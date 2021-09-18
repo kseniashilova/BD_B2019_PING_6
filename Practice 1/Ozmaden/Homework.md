@@ -64,4 +64,4 @@
 
 
 ## 5. Схема 
-![image](https://raw.githubusercontent.com/dozmaden/BD_B2019_PING_6/main/Practice%201/graph.png)
+![image](https://raw.githubusercontent.com/dozmaden/BD_B2019_PING_6/main/Practice%201/Ozmaden/graph.png)
