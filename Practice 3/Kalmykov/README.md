@@ -21,9 +21,9 @@
 
 ### Пункт 2.2.1
 
-**flat**: {[<ins>FlatNumber</ins>, HouseNumber, RoomNumber]}\
-**house**: {[<ins>HouseNumber</ins>, StreetName, FloorNumber]}\
-**street**: {[<ins>StreetName</ins>, CityName, Area]}\
+**flat**: {[<ins>FlatNumber</ins>, HouseNumber, StreetName, CityName, CountryName, RoomNumber]}\
+**house**: {[<ins>HouseNumber</ins>, StreetName, CityName, CountryName, FloorNumber]}\
+**street**: {[<ins>StreetName</ins>, CityName, CountryName, Area]}\
 **city**: {[<ins>CityName</ins>, CountryName, Population]}\
 **country**: {[<ins>CountryName</ins>, FoundationDate]}
 
