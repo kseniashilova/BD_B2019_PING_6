@@ -3,51 +3,51 @@
 Ключи используются в отношениях для уникальных ссылок на сущности. Уникальность необходима во избежание неоднозначности, когда неизвестно к какой записи таблицы можно обратиться, если в таблице есть повторяющиеся записи.
 ## Задание 2
 ### 2.1
-- Category: {[*id*, CategoryName, idParentCategory]}
-- Book: {[*ISBN*, Title, Year, Author, NumberOfPages, idPublisher]}
-- Copy: {[*id*, Position, ISBN]}
-- Publisher: {[*id*, CompanyName, Address]}
-- Customer: {[*id*, Name, Address, DoB]}
+- Category: {[<ins>id</ins>, CategoryName, idParentCategory]}
+- Book: {[<ins>ISBN</ins>, Title, Year, Author, NumberOfPages, idPublisher]}
+- Copy: {[<ins>id</ins>, Position, ISBN]}
+- Publisher: {[<ins>id</ins>, CompanyName, Address]}
+- Customer: {[<ins>id</ins>, Name, Address, DoB]}
   
-- reserved by: {[*idCustomer*, *idCopy*, ReturnDate]}
-- categorized as: {[*idBook*, *idCategory*]}
+- reserved by: {[<ins>idCustomer</ins>, <ins>idCopy</ins>, ReturnDate]}
+- categorized as: {[<ins>idBook</ins>, <ins>idCategory</ins>]}
 
 ### 2.2.1
-- Apartment: {[id, idBuilding]}
-- Building: {[id, idStreet]}
-- Street: {[id, idCity]}
-- City: {[id, idCountry]}
-- Country: {[id]}
+- Apartment: {[<ins>id</ins>, idBuilding]}
+- Building: {[<ins>id</ins>, idStreet]}
+- Street: {[<ins>id</ins>, idCity]}
+- City: {[<ins>id</ins>, idCountry]}
+- Country: {[<ins>id</ins>]}
 
 ### 2.2.2
-- Referee: {[id]}
-- Team: {[id]}
-- playing: {[idFirstTeam, idSecondTeam, idReferee]}
+- Referee: {[<ins>id</ins>]}
+- Team: {[<ins>id</ins>]}
+- playing: {[<ins>idFirstTeam</ins>, <ins>idSecondTeam</ins>, <ins>idReferee</ins>]}
 
 ### 2.2.3
-Male: {[id, idFather, idMother]}
-Female: {[id, idFather, idMother]}
+Male: {[<ins>id</ins>, idFather, idMother]}
+Female: {[<ins>id</ins>, idFather, idMother]}
 
 ### 2.3
-- Relationship: {[id, name]}
-- Entity: {[id, name]}
-- Relationship attribute: {[id, name]}
-- Entity attribute: {[id, name, isKey, idEntity]}
+- Relationship: {[<ins>id</ins>, name]}
+- Entity: {[<ins>id</ins>, name]}
+- Relationship attribute: {[<ins>id</ins>, name]}
+- Entity attribute: {[<ins>id</ins>, name, isKey, idEntity]}
 
-- related: {[idEntity, idRelationship]}
+- related: {[<ins>idEntity</ins>, <ins>idRelationship</ins>]}
 
 ## Задание 3
 ### 3.1
-- Train: {[*TrainNr*, Length, Start, End]}
-- Station: {[*Name*, NumberOfTracks City]}
-- City: {[*Name*, Region]}
+- Train: {[<ins>TrainNr</ins>, Length, Start, End]}
+- Station: {[<ins>Name</ins>, NumberOfTracks City]}
+- City: {[<ins>Name</ins>, Region]}
 
-- connected: {[TrainNr, nextStationName, Arrival, Departure]}
+- connected: {[<ins>TrainNr</ins>, <ins>StationName</ins>, Arrival, Departure]}
 
 ### 3.2
-- Station: {[StatNr, Name]}
-- StationPersonell: {[PersNr, #Name, StatNr]}
-- Room: {[RoomNr, StatNr, NumberOfBeds]}
-- Doctor: {[PersNr, Area, Rank]}
-- Caregiver: {[PersNr, Qualification]}
-- Patient: {[PatientNr, Name, Disease, DoctorNr, RoomNr, AdmissionFrom, AdmissionTo]}
+- Station: {[<ins>StatNr</ins>, Name]}
+- StationPersonell: {[<ins>PersNr</ins>, #Name, StatNr]}
+- Room: {[<ins>RoomNr</ins>, StatNr, NumberOfBeds]}
+- Doctor: {[<ins>PersNr</ins>, Area, Rank]}
+- Caregiver: {[<ins>PersNr</ins>, Qualification]}
+- Patient: {[<ins>PatientNr</ins>, Name, Disease, DoctorNr, RoomNr, AdmissionFrom, AdmissionTo]}
