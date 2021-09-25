@@ -39,16 +39,6 @@
 **man**: {[<ins>Id</ins>, MotherId, FatherId, Name, Age]}\
 **woman**: {[<ins>Id</ins>, MotherId, FatherId, Name, Age]}
 
-
-## Пункт 2.3
-
-**relationship**: {[<ins>RelationshipName</ins>]}\
-**attribute of relationship**: {[<ins>Name</ins>, RelationshipName]}\
-**entity**: {[<ins>EntityName</ins>]}\
-**attribute of entity**: {[<ins>Name</ins>, IsPartOfKey, EntityName]}
-
-**participate**: {[<ins>EntityName</ins>, <ins>RelationshipName</ins>]}
-
 # Задание 3
 
 ## Пункт 3.1
