@@ -12,10 +12,10 @@ A: Ключ необходим, чтобы отношение можно был�
 Entities:<br/>
 	**Book:** {[<ins>ISBN: integer</ins>,  Year: integer, Title: string, Author: string, numberOfPages: integer, PublisherId: integer]}<br/>
 	**Publisher:** {[<ins>PublisherId: integer</ins>, Name: string, Address: string]}<br/>
-	**Copy:** {[<ins>CopyId: integer, ISBN: integer</ins>]}<br/>
-	**Category:** {[<ins>CategoryName: string</ins>, SuperCategory: string]}<br/>
+	**Copy:** {[<ins>CopyNumber: integer</ins>, ISBN: integer, Position: integer]}<br/>
+	**Category:** {[<ins>CategoryName: string</ins>, ParentCategory: string]}<br/>
 	**Reader:** {[<ins>ReaderId: integer</ins>, Surname: string, Name: string, Address: string, DateOfBirth: date]}<br/>
-	**ReturnDate:** {[<ins>ReaderId: integer, CopyId: intrger</ins>, Date: date]}
+	**ReturnDate:** {[<ins>ReaderId: integer, CopyNumber: intrger</ins>, Date: date]}
 
 Relationships:<br/>
 	**BelongToCategory:** {[<ins>ISBN: integer, CategoryName: string</ins>]}
@@ -37,10 +37,10 @@ Entities:<br/>
 
 Entities:<br/>
 	**Arbitrator:** {[<ins>ArbitratorId: integer</ins>]}<br/>
-	**Player:** {[<ins>PlayerId: integer</ins>, ArbitratorId: integer]}
+	**Player:** {[<ins>PlayerId: integer</ins>]}
 
 Relationships:<br/>
-	**Play:** {[<ins>Player1Id: integer, Player2Id: integer</ins>]}
+	**Play:** {[<ins>ArbitratorId: integer, Player1Id: integer, Player2Id: integer</ins>]}
 
 <br/>
 
@@ -68,11 +68,11 @@ Relationships:<br/>
 
 Entities:<br/>
 	**City:** {[<ins>Name: string</ins>, <ins>Region: string</ins>]}<br/>
-	**Station:** {[<ins>Name: string</ins>, #Tracks, City: string]}<br/>
+	**Station:** {[<ins>Name: string</ins>, #Tracks, City: string, Region: string]}<br/>
 	**Train:** {[<ins>TrainNr: integer</ins>, Length: integer, Start: string, End: string]}<br/>
 
 Relationships:<br/>
-	**Connected:** {[<ins>TrainNr: integer, Station1: string, Station2: string</ins>, Departure, Arrival]}
+	**Connected:** {[<ins>TrainNr: integer, FromStation: string, ToStation: string</ins>, Departure, Arrival]}
 
 <br/>
 
