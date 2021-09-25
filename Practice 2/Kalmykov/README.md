@@ -1,6 +1,6 @@
 # Task 1
 
-![image](https://user-images.githubusercontent.com/59960079/133887255-25ff3b61-9bce-4775-9b8c-552c48103489.png)
+![image](https://user-images.githubusercontent.com/59960079/134771552-c3eedeb3-bcd4-4cc4-8be4-02629daff721.png)
 
 # Task 2
 
