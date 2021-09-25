@@ -44,3 +44,10 @@
  - Station: {[ _Name_, #Tracks, Region, CityName ]}
  - Train: {[ _TrainNr_, Length, StartStation, EndStation ]}
  - connected: {[ _TrainNr_, Departure, _DepartureStation_, Arrival, ArrivalStation ]}  (Ambiguous diagram! Assumed map from the train & any non-end station to the next station)
+*** 2: Personnel
+ - Station: {[ _StatNr_, Name ]}
+ - Room: {[ _StatNr, RoomNr_, #Beds ]}
+ - StationPersonnel: {[ _PersNr_, #Name, StatNr ]}
+ - Caregiver: {[ _PersNr_, Qualification ]}
+ - Doctor: {[ _PersNr_, Area, Rank ]}
+ - Patient: {[ _PatientNr_, Name, Disease, TreatingDoctor, AdmitedRoomStatNr, AdmitedRoomNr, AdmissionFrom, AdmissionTo ]}
