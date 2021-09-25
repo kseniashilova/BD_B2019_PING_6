@@ -12,7 +12,7 @@ A: Ключ необходим, чтобы отношение можно был�
 Entities:<br/>
 	**Book:** {[<ins>ISBN: integer</ins>,  Year: integer, Title: string, Author: string, numberOfPages: integer, PublisherId: integer]}<br/>
 	**Publisher:** {[<ins>PublisherId: integer</ins>, Name: string, Address: string]}<br/>
-	**Copy:** {[<ins>CopyId: integer</ins>, ISBN: integer]}<br/>
+	**Copy:** {[<ins>CopyId: integer, ISBN: integer</ins>]}<br/>
 	**Category:** {[<ins>CategoryName: string</ins>, SuperCategory: string]}<br/>
 	**Reader:** {[<ins>ReaderId: integer</ins>, Surname: string, Name: string, Address: string, DateOfBirth: date]}<br/>
 	**ReturnDate:** {[<ins>ReaderId: integer, CopyId: intrger</ins>, Date: date]}
