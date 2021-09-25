@@ -11,7 +11,7 @@ A: Ключ необходим, чтобы отношение можно был�
 
 Entities:<br/>
 	**Book:** {[<ins>ISBN: integer</ins>,  Year: integer, Title: string, Author: string, numberOfPages: integer, PublisherId: integer]}<br/>
-	**Publisher:** {[<ins>PublisherId: integer</ins>Name: string, Address: string]}
+	**Publisher:** {[<ins>PublisherId: integer</ins>, Name: string, Address: string]}<br/>
 	**Copy:** {[<ins>CopyId: integer</ins>, ISBN: integer]}<br/>
 	**Category:** {[<ins>CategoryName: string</ins>, SuperCategory: string]}<br/>
 	**Reader:** {[<ins>ReaderId: integer</ins>, Surname: string, Name: string, Address: string, DateOfBirth: date]}<br/>
@@ -25,10 +25,10 @@ Relationships:<br/>
 #### 2.1. Квартира - здание - улица - город - страна
 
 Entities:<br/>
-	**Apartment:** {[<ins>ApartmentId: integer</ins>, BuildingId: integer]}<br/>
-	**Building:** {[<ins>BuildingId: integer</ins>, StreetId: integer]}<br/>
-	**Street:** {[<ins>StreetId: integer</ins>, CityId: integer]}<br/>
-	**City:** {[<ins>CityId: integer</ins>, CountryId: integer]}<br/>
+	**Apartment:** {[<ins>ApartmentId: integer, BuildingId: integer</ins>]}<br/>
+	**Building:** {[<ins>BuildingId: integer, StreetId: integer</ins>]}<br/>
+	**Street:** {[<ins>StreetId: integer, CityId: integer</ins>]}<br/>
+	**City:** {[<ins>CityId: integer, CountryId: integer</ins>]}<br/>
 	**Country:** {[<ins>CountryId: integer</ins>]}
 
 <br/>
@@ -57,7 +57,7 @@ Entities:<br/>
 Entities:<br/>
 	**Entity:** {[<ins>EntityName: string</ins>, IsWeak: bool]}<br/>
 	**Relationship:** {[<ins>RelationshipName: string</ins>, Type: string]}<br/>
-	**Attribute:** {[<ins>AttributeName: string</ins>, IsKey: bool, EntityName: string]}
+	**Attribute:** {[<ins>AttributeName: string, EntityName: string</ins>, IsKey: bool]}
 
 Relationships:<br/>
 	**EntityInRelationship:** {[<ins>RelationshipName: string, EntityName: string</ins>]}<br/>
@@ -68,7 +68,7 @@ Relationships:<br/>
 
 Entities:<br/>
 	**City:** {[<ins>Name: string</ins>, <ins>Region: string</ins>]}<br/>
-	**Station:** {[<ins>RelationshipName: string</ins>, #Tracks, City: string]}<br/>
+	**Station:** {[<ins>Name: string</ins>, #Tracks, City: string]}<br/>
 	**Train:** {[<ins>TrainNr: integer</ins>, Length: integer, Start: string, End: string]}<br/>
 
 Relationships:<br/>
@@ -80,8 +80,8 @@ Relationships:<br/>
 
 Entities:<br/>
 	**Station:** {[<ins>StatNr: integer</ins>, Name: string]}<br/>
-	**Room:** {[<ins>RoomNr: integer</ins>, #Beds: integer, StatNr: integer]}<br/>
+	**Room:** {[<ins>RoomNr: integer, StatNr: integer</ins>, #Beds: integer]}<br/>
 	**StationPersonell:** {[<ins>PersNr: integer</ins>, #Name: string, StatNr: integer]}<br/>
-	**Doctor:** {[<ins>PersNr: integer</ins>, Area:string, Area: string, Rank: string]}<br/>
+	**Doctor:** {[<ins>PersNr: integer</ins>, Area: string, Rank: string]}<br/>
 	**Caregiver:** {[<ins>PersNr: integer</ins>, Qualification: string]}<br/>
 	**Patient:** {[<ins>PatientNr: integer</ins>, Name: string, Disease: string, DoctorNr: integer, RoomNr: integer, AdmissionFrom, AdmissionTo]}
