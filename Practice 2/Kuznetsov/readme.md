@@ -13,6 +13,6 @@
 ## Task 2.3
 ![image](https://github.com/Neonchick/BD_B2019_PING_6/blob/main/Practice%202/Kuznetsov/Задание_2_3.jpeg)
 
-## Task 3
+# Task 3
 
 ![image](https://github.com/Neonchick/BD_B2019_PING_6/blob/main/Practice%202/Kuznetsov/Задание_3.jpeg)
