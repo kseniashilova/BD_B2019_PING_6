@@ -9,7 +9,7 @@
  - Publisher: {[ <ins>PubId</ins>, Name, Address ]}
  - BookInstance: {[ <ins>ISBN, InstanceId</ins>, Position ]}
  - Reader: {[ <ins>ReaderID</ins>, LastName, FirstName, Address, DateOfBirth ]}
- - Capture: {[ <ins>ReaderID, ISBN, InstanceId</ins>, ReturnDate ]}  (would be a verb, if I hadn't used Chen notation)
+ - Capture: {[ <ins>ReaderID, ISBN, InstanceId</ins>, ReturnDate ]}  (would be a verb, if I hadn't used Martin notation)
 
 ### 2.1: Addresses
  - Country: {[ <ins>CountryName</ins> ]}
@@ -24,9 +24,8 @@
  - play: {[ <ins>FirstTeam, SecondTeam</ins>, RefereeId ]}
 
 ### 2.3: Genealogy
- - Human: {[ <ins>HumanId</ins>, Father, Mother ]}
- - Male: {[ <ins>HumanId</ins> ]}
- - Female: {[ <ins>HumanId</ins> ]}
+ - Man: {[ <ins>ManId</ins>, Father, Mother ]}
+ - Woman: {[ <ins>WomanId</ins>, Father, Mother ]}
 
 ### 3: ER
  - Attribute: {[ <ins>AttrId</ins>, Name ]}
