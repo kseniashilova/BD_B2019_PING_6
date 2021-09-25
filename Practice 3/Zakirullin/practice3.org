@@ -1,8 +1,7 @@
 ** Task 1
 Отношение — множество кортежей. Множество не хранит информацию о количестве вхождения элементов. Чтобы сохранить в отношении две различимых записи, они должны отличаться как минимум в одном поле кортежа. Ключ позволяет это обеспечить: элементы с различным ключом будут считаться различными; если ключи совпадают, это один и тот же объект.
 
-** Task 2
-
+** Task 2 
 *** 1: Library
  - BookPublication: {[ _ISBN_, Name, Year, Author, NumberOfPages, PubId ]}
  - Category: {[ _CatId_, Name, ParentId ]}
@@ -11,20 +10,24 @@
  - BookInstance: {[ _ISBN, InstanceId_, Position ]}
  - Reader: {[ _ReaderID_, LastName, FirstName, Address, DateOfBirth ]}
  - Capture: {[ _ReaderID, ISBN, InstanceId_, ReturnDate ]}  (would be a verb, if I hadn't used Chen notation)
+
 *** 2.1: Addresses
  - Country: {[ _CountryName_ ]}
  - City: {[ _CountryName, CityName_ ]}
  - Street: {[ _CountryName, CityName, StreetName_ ]}
  - House: {[ _CountryName, CityName, StreetName, HouseNumber_ ]}
  - Flat: {[ _CountryName, CityName, StreetName, HouseNumber, FlatNumber_ ]}
+
 *** 2.2: Football
  - Team: {[ _TeamId_ ]}
  - Referee: {[ _RefereeId_ ]}
  - play: {[ _FirstTeam, SecondTeam_, RefereeId ]}
+
 *** 2.3: Genealogy
  - Human: {[ _HumanId_, Father, Mother ]}
  - Male: {[ _HumanId_ ]}
  - Female: {[ _HumanId_ ]}
+
 *** 3: ER
  - Attribute: {[ _AttrId_, Name ]}
  - Relationship: {[ _RelId_, Name ]}
@@ -44,6 +47,7 @@
  - Station: {[ _Name_, #Tracks, Region, CityName ]}
  - Train: {[ _TrainNr_, Length, StartStation, EndStation ]}
  - connected: {[ _TrainNr_, Departure, _DepartureStation_, Arrival, ArrivalStation ]}  (Ambiguous diagram! Assumed map from the train & any non-end station to the next station)
+
 *** 2: Personnel
  - Station: {[ _StatNr_, Name ]}
  - Room: {[ _StatNr, RoomNr_, #Beds ]}
