@@ -1,2 +1,13 @@
 ** Task 1
 Отношение — множество кортежей. Множество не хранит информацию о количестве вхождения элементов. Чтобы сохранить в отношении две различимых записи, они должны отличаться как минимум в одном поле кортежа. Ключ позволяет это обеспечить: элементы с различным ключом будут считаться различными; если ключи совпадают, это один и тот же объект.
+
+** Task 2
+
+*** 1: Library
+ - BookPublication: {[_ISBN_, Name, Year, Author, NumberOfPages, PubId]}
+ - Category: {[_CatId_, Name, ParentId]}
+ - categorizes: {[_CatId, ISBN_]}
+ - Publisher: {[_PubId_, Name, Address]}
+ - BookInstance: {[_ISBN, InstanceId_, Position]}
+ - Reader: {[_ReaderID_, LastName, FirstName, Address, DateOfBirth]}
+ - Capture: {[_ReaderID, ISBN, InstanceId_, ReturnDate]}  (would be a verb, if I hadn't used Chen notation)
