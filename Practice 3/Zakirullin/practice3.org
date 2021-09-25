@@ -25,3 +25,14 @@
  - Human: {[ _HumanId_, Father, Mother ]}
  - Male: {[ _HumanId_ ]}
  - Female: {[ _HumanId_ ]}
+*** 3: ER
+ - Attribute: {[ _AttrId_, Name ]}
+ - Relationship: {[ _RelId_, Name ]}
+ - RelationshipAttribute: {[ _AttrId_, RelId ]}
+ - Entity: {[ _EntId_, Name ]}
+ - EntityAttribute: {[ _AttrId_, EntId, PartOfPK ]}
+ - participates: {[ _EntId, RelId_, Functionality, Role ]}
+ - WeakEntity: {[ _EntId_ ]}
+ - IdentifyingRelationship: {[ _RelId_, Identifiee ]}
+ - Generalisation: {[ _GenId_, Name, Supertype ]}
+ - isSubtype: {[ _GenId, Subertype_ ]}
