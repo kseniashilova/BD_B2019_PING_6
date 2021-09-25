@@ -36,3 +36,11 @@
  - IdentifyingRelationship: {[ _RelId_, Identifiee ]}
  - Generalisation: {[ _GenId_, Name, Supertype ]}
  - isSubtype: {[ _GenId, Subertype_ ]}
+
+** Task 3
+
+*** 1: Trains
+ - City: {[ _Region, Name_ ]}
+ - Station: {[ _Name_, #Tracks, Region, CityName ]}
+ - Train: {[ _TrainNr_, Length, StartStation, EndStation ]}
+ - connected: {[ _TrainNr_, Departure, _DepartureStation_, Arrival, ArrivalStation ]}  (Ambiguous diagram! Assumed map from the train & any non-end station to the next station)
