@@ -25,9 +25,9 @@ Relationships:<br/>
 #### 2.1. Квартира - здание - улица - город - страна
 
 Entities:<br/>
-	**Apartment:** {[<ins>ApartmentId: integer, BuildingId: integer</ins>]}<br/>
-	**Building:** {[<ins>BuildingId: integer, StreetId: integer</ins>]}<br/>
-	**Street:** {[<ins>StreetId: integer, CityId: integer</ins>]}<br/>
+	**Apartment:** {[<ins>ApartmentId: integer, BuildingId: integer</ins>, StreetId: integer, CityId: integer, CountryId: integer]}<br/>
+	**Building:** {[<ins>BuildingId: integer, StreetId: integer</ins>, CityId: integer, CountryId: integer]}<br/>
+	**Street:** {[<ins>StreetId: integer, CityId: integer</ins>, CountryId: integer]}<br/>
 	**City:** {[<ins>CityId: integer, CountryId: integer</ins>]}<br/>
 	**Country:** {[<ins>CountryId: integer</ins>]}
 
