@@ -39,8 +39,8 @@ Female: {[<ins>id</ins>, idFather, idMother]}
 ## Задание 3
 ### 3.1
 - Train: {[<ins>TrainNr</ins>, Length, Start, End]}
-- Station: {[<ins>Name</ins>, NumberOfTracks City]}
-- City: {[<ins>Name</ins>, Region]}
+- Station: {[<ins>Name</ins>, Tracks, NextStation, PreviousStation, City]}
+- City: {[<ins>Name</ins>, <ins>Region</ins>]}
 
 - connected: {[<ins>TrainNr</ins>, <ins>StationName</ins>, Arrival, Departure]}
 
