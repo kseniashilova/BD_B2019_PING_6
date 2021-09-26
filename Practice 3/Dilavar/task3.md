@@ -7,9 +7,9 @@
 - Book: {[<ins>ISBN</ins>, Title, Year, Author, NumberOfPages, idPublisher]}
 - Copy: {[<ins>id</ins>, Position, ISBN]}
 - Publisher: {[<ins>id</ins>, CompanyName, Address]}
-- Customer: {[<ins>id</ins>, Name, Address, DoB]}
-  
-- reserved by: {[<ins>idCustomer</ins>, <ins>idCopy</ins>, ReturnDate]}
+- Customer: {[<ins>id</ins>, Firstname, Lastname, Address, DoB]}
+- Reservation: {[<ins>id</ins>, idCopy, idCustomer, ReturnDate]}
+
 - categorized as: {[<ins>idBook</ins>, <ins>idCategory</ins>]}
 
 ### 2.2.1
