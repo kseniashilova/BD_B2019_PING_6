@@ -31,29 +31,30 @@ Rent = {[<b><u>ReaderId : int, CopyId : int</u></b>]}
 <br>
 ![task_2 2 1](https://user-images.githubusercontent.com/72196601/135004794-72bc0f92-4602-4a62-b2b4-9b0657660d3c.PNG)
 <br>
+
 ### 2.2) Футбол
 <br>
 ![task_2 2 2](https://user-images.githubusercontent.com/72196601/135004841-5ffe9908-5650-4350-850e-50cdd0bed762.PNG)
-<br>
+
+
 ### 2.3) Родители и дети
 <br>
 ![task_2 2 3](https://user-images.githubusercontent.com/72196601/135004850-e10d20be-ac95-492b-967b-c3c7808be3d2.PNG)
-<br>
+
 
 ### 3) ER-модель в ER-диаграмме
 <br>
 ![task_2 3](https://user-images.githubusercontent.com/72196601/135004865-378c7d69-2fbe-40de-9ce3-7724b3b931ae.PNG)
-<br>
+
 
 ## <b> Задача №3: </b> <i> <br> Переведите приведенные диаграммы ER в реляционные схемы. </i>
-<br>
 
 ### 3.1)
 <br>
 ![task_3 1](https://user-images.githubusercontent.com/72196601/135004974-7926bb27-f1ef-43be-bd57-c652d916f61f.PNG)
-<br>
+
 
 ### 3.2)
 <br>
 ![task_3 2](https://user-images.githubusercontent.com/72196601/135004984-58259881-efaa-48ea-a38c-806efcfa8abc.PNG)
-<br>
+
