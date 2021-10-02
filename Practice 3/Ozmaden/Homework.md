@@ -6,77 +6,77 @@
 
 ### 2.1
 
-Категория: {[<ins>id</ins>, name, id_parentCategory]}
+- Категория: {[<ins>id</ins>, name, id_parentCategory]}
 
-Книга: {[<ins>ISBN</ins>, title, author, year, pages, id_publisher]}
+- Книга: {[<ins>ISBN</ins>, title, author, year, pages, id_publisher]}
 
-Копия: {[<ins>id</ins>, position, ISBN]}
+- Копия: {[<ins>id</ins>, position, ISBN]}
 
-Издатель: {[<ins>id</ins>, name, address]}
+- Издатель: {[<ins>id</ins>, name, address]}
 
-Читатель: {[<ins>id</ins>, first_name, last_name, birthday, address]}
+- Читатель: {[<ins>id</ins>, first_name, last_name, birthday, address]}
 
-Бронирование: {[<ins>id</ins>, id_copy, id_reader, return_date]}
+- Бронирование: {[<ins>id</ins>, id_copy, id_reader, return_date]}
 
 ### 2.2.1
 
-Квартира: {[id, id_building]}
+- Квартира: {[<ins>id</ins>, id_building]}
 
-Дом: {[id, id_street]}
+- Дом: {[<ins>id</ins>, id_street]}
 
-Улица: {[id, id_city]}
+- Улица: {[<ins>id</ins>, id_city]}
 
-Город: {[id, id_country]}
+- Город: {[<ins>id</ins>, id_country]}
 
-Страна: {[id]}
+- Страна: {[<ins>id</ins>]}
 
 ### 2.2.2
 
-Арбитр: {[<ins>id</ins>]}
+- Арбитр: {[<ins>id</ins>]}
 
-Команда: {[<ins>id</ins>]}
+- Команда: {[<ins>id</ins>]}
 
-Игра: {[<ins>id_first</ins>, <ins>id_second</ins>, <ins>id_arbitos</ins>]}
+- Игра: {[<ins>id_first</ins>, <ins>id_second</ins>, <ins>id_arbitos</ins>]}
 
 
 ### 2.2.3
 
-Мужчина: {[<ins>id</ins>, id_father, id_mother]}
+- Мужчина: {[<ins>id</ins>, id_father, id_mother]}
 
-Женщина: {[<ins>id</ins>, id_father, id_mother]}
+- Женщина: {[<ins>id</ins>, id_father, id_mother]}
 
 ### 2.3
 
-Атрибут: {[ <ins>id</ins>, name, entity_name, partOfKey]}
+- Атрибут: {[ <ins>id</ins>, name, entity_name, partOfKey]}
 
-Сущность: {[<ins>id</ins>, name]}
+- Сущность: {[<ins>id</ins>, name]}
 
-Связь: {[ <ins>id</ins>, name]}
+- Связь: {[ <ins>id</ins>, name]}
 
-Сущность-Связь: {[ entity_name, connection_name]}
+- Сущность-Связь: {[ entity_name, connection_name]}
 
 ## 3. Переведите приведенные диаграммы ER в реляционные схемы.
 
 ### 3.1
 
-City: {[<ins>Name</ins>, <ins>Region</ins>]}
+- City: {[<ins>Name</ins>, <ins>Region</ins>]}
 
-Station: {[<ins>Name</ins>, #Tracks, nextStation, prevStation, city]}
+- Station: {[<ins>Name</ins>, #Tracks, nextStation, prevStation, city]}
 
-Train: {[<ins>TrainNr</ins>, length, start, finish]}
+- Train: {[<ins>TrainNr</ins>, length, start, finish]}
 
 - schedule: {[<ins>TrainNr</ins>, <ins>StationName</ins>, arrival, departure]}
 
 ### 3.2
 
-Station: {[<ins>StatNr</ins>, name]}
+- Station: {[<ins>StatNr</ins>, name]}
 
-StationPersonell: {[<ins>PersNr</ins>, #name, StatNr]}
+- StationPersonell: {[<ins>PersNr</ins>, #name, StatNr]}
 
-Doctor: {[<ins>PersNr</ins>, area, rank]}
+- Doctor: {[<ins>PersNr</ins>, area, rank]}
 
-Caregiver: {[<ins>PersNr</ins>, qaulification]}
+- Caregiver: {[<ins>PersNr</ins>, qaulification]}
 
-Patient: {[<ins>PatientNr</ins>, name, disease, doctorNr, roomNr, admissionFrom, admissionTo]}
+- Patient: {[<ins>PatientNr</ins>, name, disease, doctorNr, roomNr, admissionFrom, admissionTo]}
 
-Room: {[<ins>RoomNr</ins>, StatNr, beds]}
+- Room: {[<ins>RoomNr</ins>, StatNr, beds]}
