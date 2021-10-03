@@ -118,7 +118,7 @@ SELECT DISTINCT Reader.Surname, Reader.Name FROM ReturnDate
 ![equation](https://latex.codecogs.com/png.latex?A_6&space;=&space;FirstTransit.Departure)<br/>
 ![equation](https://latex.codecogs.com/png.latex?A_7&space;=&space;SecondTransit.Arrival)<br/>
 
-Если маршрут Москва->Санкт-Петербург многосегментный, то в R1 существует маршрут Москва->N и N->Санкт-Петербург. Соединим таблицу R1 с собой по следующему правилу:
+Если маршрут Москва->Санкт-Петербург многосегментный, то в R1 существует маршрут Москва->N и N->Санкт-Петербург. Соединим таблицу FirstTransit и SecondTransit по следующему правилу:
 
 ![equation](https://latex.codecogs.com/png.latex?P_1&space;=&space;(FirstTransit.TrainNr=SecondTransit.TrainNr)\cap&space;(FirstTransit.ToStation=SecondTransit.FromStation))
 
