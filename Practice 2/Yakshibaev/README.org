@@ -1,0 +1,148 @@
+#+TITLE: Задание №2
+#+AUTHOR: Арыслан Якшибаев, БПИ196
+#+DATE:
+
+* Этот документ доступен в [[file:README.pdf][PDF формате]] :noexport:
+
+* Задача 1
+#+begin_quote
+Нарисуйте E/R диаграмму для библиотечной системы на основе следующих требований:
+
+- В библиотеке хранятся экземпляры книг. Каждая копия (экземпляр) имеет свой уникальный номер копии, положение на полке и может быть однозначно идентифицирована с помощью номера копии вместе с ISBN.
+- Каждая книга имеет уникальный номер ISBN, год, название, автора и количество страниц.
+- Книги издаются издательствами. У издателя есть имя и адрес.
+- В библиотечной системе книгам присвоена одна категория или несколько. Категории образуют иерархию, поэтому категория может быть просто другой подчиненой категорией (подкатегория). Категория имеет только имя и никаких других свойств.
+- Каждому читателю присвается уникальный номер. У читателя есть Фамилия, Имя, адрес и день рождения. Читатель может взять один или несколько экземпляров книг. При взятии книги записывается запланированая дата возврата.
+#+end_quote
+
+#+begin_src plantuml :file img/task1.png :exports both :cache yes
+/'
+ ' skinparam linetype ortho
+ '/
+
+entity Book {
+        ,* id
+        --
+        ,* ISBN
+        ,* Year
+        ,* Title
+        ,* Author
+        ,* Pages count
+}
+
+entity BookCopy {
+        ,* id
+        --
+        ,* Position
+}
+
+entity Publisher {
+        ,* id
+        --
+        ,* Name
+        ,* Address
+}
+
+entity Category {
+        ,* id
+        --
+        ,* Name
+}
+
+entity Reader {
+        ,* id
+        --
+        ,* First name
+        ,* Last name
+        ,* Address
+        ,* Birthday
+}
+
+entity Booking {
+        ,* id
+        --
+        ,* Return date
+}
+
+Book "is published by" }o--up-|| "has published" Publisher
+Book "is assigned to" }o--down-o{ "describes" Category
+Category "is parent of" }o---|| "is subcategory of" Category
+Reader "takes" |o--o{ "is taken by" Booking
+Booking "contains" |o--|| "is included in" BookCopy
+Book "is identified by" ||-right----o{ "is a copy of" BookCopy
+#+end_src
+
+#+attr_latex: :float t :width 10cm
+#+RESULTS[ec35360cd471f604f982b462398dd3194ce0bc86]:
+[[file:img/task1.png]]
+
+* Задача 2
+#+begin_quote
+Смоделируйте следующие отношения в E/R.
+
+- Квартира расположена в доме на улице в городе в стране
+- Две команды играют друг против друга в футбол под руководством арбитра
+- У каждого человека (мужчины и женщины) есть отец и мать
+#+end_quote
+
+** 2.1
+#+begin_quote
+Квартира расположена в доме на улице в городе в стране
+#+end_quote
+
+#+begin_src plantuml :file img/2_1.png :exports both :cache yes
+Apartment }o-Right-|| House: is in
+House }o-Down-|| Street: is in
+Street }o-Left-|| City: is in
+City }o--|| Country: is in
+#+end_src
+
+#+attr_latex: :height 15cm
+#+RESULTS[ce7006294b9dc3d7da12183a0ae241b649688e47]:
+[[file:img/2_1.png]]
+
+** 2.2
+#+begin_quote
+Две команды играют друг против друга в футбол под руководством арбитра
+#+end_quote
+
+#+begin_src plantuml :file img/2_2.png :exports both :cache yes
+Team "2" }o-Right-|| Arbiter: is supervising
+#+end_src
+
+#+attr_latex: :float t
+#+RESULTS[18f9f87c0851630271f1bb171350c61def773104]:
+[[file:img/2_2.png]]
+
+** 2.3
+#+begin_quote
+У каждого человека (мужчины и женщины) есть отец и мать
+#+end_quote
+
+#+begin_src plantuml :file img/2_3.png :exports both :cache yes
+Woman "is daughter of" }o--|| "is mother of" Woman
+Man "is son of" }o-Down-|| "is mother of" Woman
+
+Woman "is daughter of" }o--|| "is father of" Man
+Man "is son of" }o--|| "is father of" Man
+#+end_src
+
+#+attr_latex: :float t
+#+RESULTS[84c91f23730c20fc2e7f04de5261cedb42aeea4e]:
+[[file:img/2_3.png]]
+
+
+* Задача 3
+#+begin_quote
+Смоделируйте E/R-модель в виде E/R диаграммы
+#+end_quote
+
+#+begin_src plantuml :file img/task3.png :cache yes
+Entity "contains" ||--o{ "belongs to" Attribute
+Entity "has" }o---o{ "2" Relation
+Relation "has" ||-down-o{ "2" Role
+#+end_src
+
+#+attr_latex: :width 10cm
+#+RESULTS[89c02dcf6c7a2af3dad9e7921c757b53902d5e39]:
+[[file:img/task3.png]]
