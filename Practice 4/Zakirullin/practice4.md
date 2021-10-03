@@ -62,3 +62,5 @@ SELECT c1.TrainNr AS TrainNr FROM connected c1, connected c2, Station dst, Stati
 Сущности L, R, поля, по которому join — C.
 
 Π\_(¬RC)(σ\_(C = RC)(L × ρ\_(RC ← C)(R))) ∪ Π\_(¬RC)(σ\_(C = RC)(L × ρ\_(RC ← C)(Π\_(C)(L) ∖ Π\_(C)(R)))) ∪ Π\_(¬LC)(σ\_(C = LC)(R × ρ\_(LC ← C)(Π\_(C)(R) ∖ Π\_(C)(L))))
+
+![Render](task3.svg)
