@@ -30,3 +30,29 @@ SELECT r.LastName AS LastName, r.FirstName AS FirstName FROM Reader r, Capture c
 ``` sql
 SELECT DISTINCT r.LastName AS LastName, r.FirstName AS FirstName FROM Reader r, Capture c, (SELECT c.ISBN as ISBN FROM Capture c, Reader r WHERE r.FirstName = 'Иван' AND r.LastName = 'Иванов' AND c.ReaderID = r.ReaderID) o WHERE c.ReaderID = r.ReaderID AND c.ISBN = o.ISBN AND NOT (r.FirstName = 'Иван' AND r.LastName = 'Иванов');
 ```
+
+## Task 2
+
+### а)
+
+Под прямым рейсом понимаем все поезда, у которых две данные станции — смежные (т. е. \* - A - B - \*).
+
+`ist` нужно, чтобы не учитывать несколько станций в одном и том же городе по пути.
+
+``` sql
+(SELECT c.TrainNr AS TrainNr FROM connected c, Station dst, Station ast WHERE c.DepartureStation = dst.Name AND c.ArrivalStation = ast.Name AND dst.CityName = 'Москва' AND ast.CityName = 'Тверь') MINUS (SELECT c1.TrainNr AS TrainNr FROM connected c1, connected c2, Station dst, Station ist, Station ast WHERE c1.DepartureStation = dst.Name AND c1.ArrivalStation = ist.Name AND c2.ArrivalStation = ast.Name AND c1.ArrivalStation = c2.DepartureStation AND c1.TrainNr = c2.TrainNr AND dst.CityName = 'Москва' AND NOT ist.CityName = dst.CityName AND NOT ist.CityName = ast.CityName AND ast.CityName = 'Тверь');
+```
+
+### б)
+
+Предполагается, что многосегментность строгая (для нестрогой достаточного одного соединения).
+
+``` sql
+SELECT c1.TrainNr AS TrainNr FROM connected c1, connected c2, Station dst, Station ast WHERE c1.DepartureStation = dst.Name AND c2.ArrivalStation = ast.Name AND c1.ArrivalStation = c2.DepartureStation AND c1.TrainNr = c2.TrainNr AND dst.CityName = 'Москва' AND ast.CityName = 'Санкт-Петербург' AND DAY(c1.Departure) = DAY(c2.Arrival);
+```
+
+### в)
+
+Пункт а станет проще: останется только выражение слева от вычитания.
+
+Пункт б нельзя будет решить, не имея возможности создавать цикл/рекурсию.
