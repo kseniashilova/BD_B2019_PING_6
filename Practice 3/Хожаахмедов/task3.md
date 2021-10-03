@@ -8,18 +8,18 @@
 # Task 2 (Диаграммы из дз_2)
 
 1. 
-Reader {reader number, last name, first name, address, birthday}
-Book {ISBN, year, title, author, number of pages, category, publisher name, publisher
+Reader {reader number, last name, first name, address, birthday}<br />
+Book {ISBN, year, title, author, number of pages, category, publisher name, publisher<br />
 address}
-Publisher {name, address}
-Copy {copyNumber, position on shelf, book ISBN}
+Publisher {name, address}<br />
+Copy {copyNumber, position on shelf, book ISBN}<br />
 Borrowing {return date, reader number, copyNumber}
 
 2. 
-Country {country}
-City {country, city}
-Street {country, city, street}
-House {country, city, street, house}
+Country {country}<br />
+City {country, city}<br />
+Street {country, city, street}<br />
+House {country, city, street, house}<br />
 Apartment {country, city, street, house, apartment}
 
 3. 
@@ -29,26 +29,26 @@ Play {teamA, teamB, arbitrator}
 Parents {Dad, Mommy, child}
 
 5. 
-Connection {relationship, entity}
+Connection {relationship, entity}<br />
 Attributes {entity, attributes}
 
 # Task 3
 
 1. 
-Station {Name, #Tracks, City_Name, City_Region}
-City {Region, Name}
-Train {TrainNr, Length, Station_Name_Start, Station_Name_End}
+Station {Name, #Tracks, City_Name, City_Region}<br />
+City {Region, Name}<br />
+Train {TrainNr, Length, Station_Name_Start, Station_Name_End}<br />
 Connected {TrainNr, Station_Name, Departure, Arrival}
 
 2. 
-StationPersonell {PersNr, #Name, Station_StatNr}
-Doctor {Area, Rank, StationPersonell PersNr}
-Caregiver {Qualification, StationPersonell PersNr}
-Station {StatNr, Name}
-Room {RoomNr, #Beds, Station StatNr}
+StationPersonell {PersNr, #Name, Station_StatNr}<br />
+Doctor {Area, Rank, StationPersonell PersNr}<br />
+Caregiver {Qualification, StationPersonell PersNr}<br />
+Station {StatNr, Name}<br />
+Room {RoomNr, #Beds, Station StatNr}<br />
 Patient {PatientNr, Name, Disease, Room RoomNr, StatiomPersonell PersNr}
 
-Works_for {StatiomPersonell PersNr, Station StatNr}
-Has {Station StatNr, Room RoomNr}
-Admission {from, to, Patient PatientNr, Room RoomNr}
+Works_for {StatiomPersonell PersNr, Station StatNr}<br />
+Has {Station StatNr, Room RoomNr}<br />
+Admission {from, to, Patient PatientNr, Room RoomNr}<br />
 Treats {StatiomPersonell PersNr, Patient PatientNr}
