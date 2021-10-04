@@ -9,21 +9,19 @@
 Переведите все диаграммы ER из предыдущей домашней работы в реляционные схемы.
 ## 1.
 
-Книга: {[ <ins>ISBN</ins>, Id издателя, Год, Название, Автор, Количество страниц ]}
+Book ( <ins>ISBN</ins>, Title, Author, PagesNum, Year, PublisherName )
 
-Копия книги: {[ <ins>ISBN</ins>, <ins>Номер копии</ins>, Положение на полке ]}
+Copy ( <ins>ISBN</ins>, <ins>CopyNumber</ins>, ShelfPosition )
 
-Издательство: {[ <ins>Id</ins>, Имя, Адрес ]}
+Publisher ( <ins>Name</ins>, Address )
 
-Категория: {[ <ins>Id</ins>, Имя, Id над-категории ]}
+Category ( <ins>Name</ins>, ParentCategoryName )
 
-Категория книги: {[ <ins>ISBN</ins>, <ins>Id категории</ins> ]}
+BookCategory ( <ins>ISBN</ins>, <ins>CategoryName</ins> )
 
-Читатель: {[ <ins>Номер</ins>, Фамилия, Имя, Адрес, День рождения ]}
+Reader( <ins>Id</ins>, LastName, FirstName, Address, BirthDate )
 
-Бронирование: {[ <ins>Id</ins>, Номер читателя, ISBN, Номер копии, Дата возврата ]}
-
-![](images/Task2/Task1.png)
+Borrowing ( <ins>ReaderId</ins>, ISBN, CopyNumber, ReturnDate )
 
 ## 2.1.
 
