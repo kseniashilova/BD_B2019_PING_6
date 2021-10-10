@@ -100,6 +100,7 @@ SELECT * FROM Book b
 WITH RECURSIVE category AS
  (
    SELECT c.CategoryName, c.ParentCat FROM Category c
+   WHERE c.ParentCat = "Спорт"
    UNION ALL
    SELECT category.CategoryName, category.ParentCat
     FROM category, Category c2
@@ -113,6 +114,10 @@ WITH RECURSIVE category AS
 Напишите SQL-запросы для следующих действий:
 
 * Добавьте запись о бронировании читателем ‘Василеем Петровым’ книги с ISBN 123456 и номером копии 4.
+
+INSERT INTO Borrowing (ReaderNr, ISBN, CopyNumber, ReturnDate)
+  SELECT ID, 
+
 * Удалить все книги, год публикации которых превышает 2000 год.
 * Измените дату возврата для всех книг категории "Базы данных", начиная с 01.01.2016, чтобы они были в заимствовании на 30 дней дольше (предположим, что в SQL можно добавлять числа к датам).
 
