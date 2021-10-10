@@ -32,7 +32,7 @@ WHERE PagesNum > (SELECT avg(PagesNum) * 2 FROM Book);
 
 ```sql
 SELECT DISTINCT a.CategoryName FROM Category a 
-INNER JOIN Category b ON a.CategoryName = b.ParentCat.CategoryName;
+INNER JOIN Category b ON a.CategoryName = b.ParentCat;
 ```
 
 ### У какого автора (предположим, что имена авторов уникальны) написано максимальное количество книг? 
@@ -76,11 +76,11 @@ LIMIT 10;
 WITH RECURSIVE current_category AS
 (
   SELECT * FROM Category
-  WHERE Category.ParentCat.CategoryName = 'Спорт'
+  WHERE Category.ParentCat = 'Спорт'
     UNION ALL
   SELECT subcategory.* FROM Category subcategory
     JOIN current_category
-      ON subcategory.ParentCat.CategoryName = current_category.CategoryName
+      ON subcategory.ParentCat = current_category.CategoryName
 )
 SELECT DISTINCT CategoryName FROM current_category;
 ```
