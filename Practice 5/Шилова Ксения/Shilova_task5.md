@@ -72,8 +72,8 @@ SELECT r.ID, r.LastName, r.FirstName, r.Address, r.BirthDate FROM
       JOIN Book book ON book.ISBN = bor.ISBN
     WHERE Author = "Марк Твен"
     GROUP BY r.ID)
-WHERE count = COUNT(
-        SELECT * FROM Book b
+WHERE count = (
+        SELECT COUNT(*) FROM Book b
           WHERE b.Author = "Марк Твен"
 ) ;
 ```
@@ -81,9 +81,9 @@ WHERE count = COUNT(
 * Какие книги имеют более одной копии? 
 
 ```sql
- SELECT c.ISBN, COUNT(*) as count FROM Copy c
+ SELECT c.ISBN FROM Copy c
     GROUP BY c.ISBN
-    HAVING count > 1 ;
+    HAVING COUNT(*) > 1 ;
 ```
 
 * ТОП 10 самых старых книг
