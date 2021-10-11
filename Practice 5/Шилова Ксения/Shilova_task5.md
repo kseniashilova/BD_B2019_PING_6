@@ -42,7 +42,8 @@ SELECT * FROM Book b
 
 ```sql
 SELECT * FROM Book b 
-  WHERE b.PagesNum > 2 * AVG(b.PagesNum) ; 
+  WHERE b.PagesNum > (
+  SELECT 2 * AVG(b2.PagesNum) FROM Book b2); 
 ```
 
 * Какие категории содержат подкатегории?
@@ -55,11 +56,10 @@ SELECT DISTINCT c1.CategoryName FROM Category c1
 * У какого автора (предположим, что имена авторов уникальны) написано максимальное количество книг?
 
 ```sql
-  SELECT Author FROM (
-    SELECT Author, COUNT(Author) FROM Book
-      GROUP BY Author
-    )
-   WHERE COUNT(Author) = MAX(COUNT(Author)) ;
+  SELECT author, COUNT(author) as count FROM books
+    GROUP BY author
+    ORDER BY count DESC 
+    LIMIT 1
 ```
 
 * Какие читатели забронировали   все книги (не копии), написанные "Марком Твеном"?
