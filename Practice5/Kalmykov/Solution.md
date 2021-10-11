@@ -50,6 +50,20 @@ WHERE Author = (SELECT Author FROM (
 
 ### Какие читатели забронировали все книги (не копии), написанные "Марком Твеном"?
 
+```sql
+SELECT r.ID, r.LastName, r.FirstName, r.Address, r.BirthDate FROM
+  ( SELECT r.ID, r.LastName, r.FirstName, r.Address, r.BirthDate, COUNT(*) as count
+   FROM Reader r
+      JOIN Borrowing bor ON bor.ReaderNR = r.ID
+      JOIN Book book ON book.ISBN = bor.ISBN
+    WHERE Author = "Марк Твен"
+    GROUP BY r.ID)
+WHERE count = COUNT(
+        SELECT * FROM Book b
+          WHERE b.Author = "Марк Твен"
+) ;
+```
+
 ### Какие книги имеют более одной копии? 
 
 ```sql
