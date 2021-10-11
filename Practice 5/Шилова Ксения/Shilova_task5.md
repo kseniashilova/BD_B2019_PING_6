@@ -25,7 +25,8 @@ SELECT b.Title, b.PubName FROM Book b ;
 
 ```sql
 SELECT * FROM Book b 
-  WHERE b.PagesNum =  MAX(b.PagesNum); 
+  WHERE b.PagesNum =  (
+  SELECT MAX(b2.PagesNum) FROM Book b2)
 ```
 
 * Какие авторы написали более 5 книг?
