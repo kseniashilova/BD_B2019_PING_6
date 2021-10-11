@@ -3,10 +3,10 @@
 
 ** Task 2 
 *** 1: Library
- - BookPublication: {[ _ISBN_, Name, Year, Author, NumberOfPages, PubId ]}
- - Category: {[ _CatId_, Name, ParentId ]}
- - categorizes: {[ _CatId, ISBN_ ]}
- - Publisher: {[ _PubId_, Name, Address ]}
+ - BookPublication: {[ _ISBN_, Name, Year, Author, NumberOfPages, PubName ]}
+ - Category: {[ _CatName_, ParentName ]}
+ - categorizes: {[ _CatName, ISBN_ ]}
+ - Publisher: {[ _PubName_, Address ]}
  - BookInstance: {[ _ISBN, InstanceId_, Position ]}
  - Reader: {[ _ReaderID_, LastName, FirstName, Address, DateOfBirth ]}
  - Capture: {[ _ReaderID, ISBN, InstanceId_, ReturnDate ]}  (would be a verb, if I hadn't used Martin notation)
@@ -45,7 +45,7 @@
  - City: {[ _Region, Name_ ]}
  - Station: {[ _Name_, #Tracks, Region, CityName ]}
  - Train: {[ _TrainNr_, Length, StartStation, EndStation ]}
- - connected: {[ _TrainNr_, Departure, _DepartureStation_, Arrival, ArrivalStation ]}  (Ambiguous diagram! Assumed map from the train & any non-end station to the next station)
+ - connected: {[ _TrainNr_, Departure, _DepartureStation_, Arrival, ArrivalStation ]}  (Ambiguous diagram! Assumed map from the train & any non-end station to the next station) (Если будет транзитивное замыкание, придётся добавлять станцию прибытия тоже в ключ)
 
 *** 2: Personnel
  - Station: {[ _StatNr_, Name ]}
@@ -53,4 +53,4 @@
  - StationPersonnel: {[ _PersNr_, #Name, StatNr ]}
  - Caregiver: {[ _PersNr_, Qualification ]}
  - Doctor: {[ _PersNr_, Area, Rank ]}
- - Patient: {[ _PatientNr_, Name, Disease, TreatingDoctor, AdmitedRoomStatNr, AdmitedRoomNr, AdmissionFrom, AdmissionTo ]}
+ - Patient: {[ _PatientNr_, Name, Disease, PersNr (formerly TreatingDoctor), AdmitedRoomStatNr, AdmitedRoomNr, AdmissionFrom, AdmissionTo ]}

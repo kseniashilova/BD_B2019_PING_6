@@ -51,14 +51,14 @@
 
 1. Почему любое отношение в реляционной схеме имеет по крайней мере один ключ?
 2. Переведите все диаграммы ER из предыдущей домашней работы в реляционные схемы.
-3. Переведите приведенные диаграммы ER в реляционные схемы.
-    3.1. https://imgur.com/w2iDI1o
+3. Переведите приведенные диаграммы ER в реляционные схемы. <br>
+    3.1. https://imgur.com/w2iDI1o <br>
     3.2. https://imgur.com/oFBM5pp
 
  ### Соглашение о приеме работ
 
 * В папке с названием задания, создается папка с фамилией студента, в которой он работает
-* Текстовы файлы оформляются в формате .md
+* Текстовые файлы оформляются в формате .md
 * Изображения лежат рядом, в .md указываем ссылку
 * Срок сдачи - до 23:59 25.09.2021. 
 * Комиты можно писать на русском языке
@@ -68,35 +68,35 @@
 ### Задача 1
 Возьмите библиотечную систему, схему которой сделали на предыдущем задании
 
-Reader( ID, LastName, FirstName, Address, BirthDate) 
-Book ( ISBN, Title, Author, PagesNum, PubYear, PubName) 
-Publisher ( PubName, PubAdress) 
-Category ( CategoryName, ParentCat) 
-Copy ( ISBN, CopyNumber, ShelfPosition) 
-
-Borrowing ( ReaderNr, ISBN, CopyNumber, ReturnDate) 
+Reader( ID, LastName, FirstName, Address, BirthDate)  <br>
+Book ( ISBN, Title, Author, PagesNum, PubYear, PubName)  <br>
+Publisher ( PubName, PubAdress)  <br>
+Category ( CategoryName, ParentCat)  <br>
+Copy ( ISBN, CopyNumber, ShelfPosition)  <br>
+Borrowing ( ReaderNr, ISBN, CopyNumber, ReturnDate)  <br>
 BookCat ( ISBN, CategoryName )  
 
 Напишите SQL-запросы (или выражения реляционной алгебры) для следующих вопросов:
-а) Какие фамилии читателей в Москве?
-б) Какие книги (author, title) брал Иван Иванов?
-в) Какие книги (ISBN) из категории "Горы" не относятся к категории "Путешествия"? Подкатегории не обязательно принимать во внимание!
-г) Какие читатели (LastName, FirstName) вернули копию книгу?
-д) Какие читатели (LastName, FirstName) брали хотя бы одну книгу (не копию), которую брал также Иван Иванов (не включайте Ивана Иванова в результат)?
+
+а) Какие фамилии читателей в Москве? <br>
+б) Какие книги (author, title) брал Иван Иванов? <br>
+в) Какие книги (ISBN) из категории "Горы" не относятся к категории "Путешествия"? Подкатегории не обязательно принимать во внимание! <br>
+г) Какие читатели (LastName, FirstName) вернули копию книги? <br>
+д) Какие читатели (LastName, FirstName) брали хотя бы одну книгу (не копию), которую брал также Иван Иванов (не включайте Ивана Иванова в результат)? <br>
 
 ### Задача 2
 
 Возьмите схему для Поездов, которую выполняли в предыдущем задании. 
 
-City ( Name, Region ) 
-Station ( Name, #Tracks, CityName, Region ) 
-Train ( TrainNr, Length, StartStationName, EndStationName ) 
- ( FromStation, ToStation, TrainNr, Departure, Arrival) 
+City ( Name, Region ) <br>
+Station ( Name, #Tracks, CityName, Region ) <br>
+Train ( TrainNr, Length, StartStationName, EndStationName ) <br>
+Connection ( FromStation, ToStation, TrainNr, Departure, Arrival) <br>
 
 Предположим, что отношение "Connection" уже содержит транзитивное замыкание. Когда поезд 101 отправляется из Москвы в Санкт-Петербург через Тверь, содержит кортежи для связи Москва->Тверь, Тверь-Санкт-Петербург и Москва->Санкт-Петербург. Сформулируйте следующие запросы в реляционной алгебре:
 
-а) Найдите все прямые рейсы из Москвы в Тверь.
-б) Найдите все многосегментные маршруты, имеющие точно однодневный трансфер из Москвы в Санкт-Петербург (первое отправление и прибытие в конечную точку должны быть в одну и ту же дату). Вы можете применить функцию DAY () к атрибутам Departure и Arrival, чтобы определить дату.
+а) Найдите все прямые рейсы из Москвы в Тверь. <br>
+б) Найдите все многосегментные маршруты, имеющие точно однодневный трансфер из Москвы в Санкт-Петербург (первое отправление и прибытие в конечную точку должны быть в одну и ту же дату). Вы можете применить функцию DAY () к атрибутам Departure и Arrival, чтобы определить дату. <br>
 в) Что изменится в выражениях для а) и б), если отношение "Connection" не содержит дополнительных кортежей для транзитивного замыкания, поэтому многосегментный маршрут Москва-> Тверь-> Санкт-Петербург содержит только кортежи Москва-> Тверь и Тверь-Санкт-Петербург?
 
 ### Задача 3
@@ -105,7 +105,84 @@ Train ( TrainNr, Length, StartStationName, EndStationName )
 ### Соглашение о приеме работ
 
 * В папке с названием задания, создается папка с фамилией студента, в которой он работает
-* Текстовы файлы оформляются в формате .md
+* Текстовые файлы оформляются в формате .md
 * Изображения лежат рядом, в .md указываем ссылку
 * Срок сдачи - до 18:00 03.09.2021. 
 * Комиты можно писать на русском языке
+
+## Задание 5
+
+### Задача 1
+
+Возьмите реляционную схему для библиотеки сделаную в задании 3.1: 
+
+* Reader( <ins>ID</ins>, LastName, FirstName, Address, BirthDate)  <br>
+* Book ( <ins>ISBN</ins>, Title, Author, PagesNum, PubYear, PubName)  <br>
+* Publisher ( <ins>PubName</ins>, PubAdress)  <br>
+* Category ( <ins>CategoryName</ins>, ParentCat)  <br>
+* Copy ( <ins>ISBN, CopyNumber</ins>,, ShelfPosition)  <br>
+
+* Borrowing ( <ins>ReaderNr, ISBN, CopyNumber</ins>, ReturnDate)  <br>
+* BookCat ( <ins>ISBN, CategoryName</ins> )  
+
+Напишите SQL-запросы:
+
+* Показать все названия книг вместе с именами издателей.
+* В какой книге наибольшее количество страниц?
+* Какие авторы написали более 5 книг?
+* В каких книгах более чем в два раза больше страниц, чем среднее количество страниц для всех книг?
+* Какие категории содержат подкатегории?
+* У какого автора (предположим, что имена авторов уникальны) написано максимальное количество книг?
+* Какие читатели забронировали   все книги (не копии), написанные "Марком Твеном"?
+* Какие книги имеют более одной копии? 
+* ТОП 10 самых старых книг
+* Перечислите все категории в категории “Спорт” (с любым уровнем вложености).
+
+### Задача 2
+
+Напишите SQL-запросы для следующих действий:
+
+* Добавьте запись о бронировании читателем ‘Василеем Петровым’ книги с ISBN 123456 и номером копии 4.
+* Удалить все книги, год публикации которых превышает 2000 год.
+* Измените дату возврата для всех книг категории "Базы данных", начиная с 01.01.2016, чтобы они были в заимствовании на 30 дней дольше (предположим, что в SQL можно добавлять числа к датам).
+
+
+### Задача 3
+
+Рассмотрим следующую реляционную схему:
+
+* Student( MatrNr, Name, Semester ) 
+* Check( MatrNr, LectNr, ProfNr, Note ) 
+* Lecture( LectNr, Title, Credit, ProfNr ) 
+* Professor( ProfNr, Name, Room )
+
+Опишите на русском языке результаты следующих запросов:
+
+1.
+```sql
+SELECT s.Name, s.MatrNr FROM Student s 
+  WHERE NOT EXISTS ( 
+    SELECT * FROM Check c WHERE c.MatrNr = s.MatrNr AND c.Note >= 4.0 ) ; 
+```
+
+2.
+```sql
+( SELECT p.ProfNr, p.Name, sum(lec.Credit) 
+FROM Professor p, Lecture lec 
+WHERE p.ProfNr = lec.ProfNr
+GROUP BY p.ProfNr, p.Name)
+UNION
+( SELECT p.ProfNr, p.Name, 0 
+FROM Professor p
+WHERE NOT EXISTS ( 
+  SELECT * FROM Lecture lec WHERE lec.ProfNr = p.ProfNr )); 
+```
+
+3.
+```sql
+SELECT s.Name, p.Note
+  FROM Student s, Lecture lec, Check c
+  WHERE s.MatrNr = c.MatrNr AND lec.LectNr = c.LectNr AND c.Note >= 4 
+    AND c.Note >= ALL ( 
+      SELECT c1.Note FROM Check c1 WHERE c1.MatrNr = c.MatrNr ) 
+```
