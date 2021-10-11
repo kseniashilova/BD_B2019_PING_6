@@ -21,25 +21,24 @@ SELECT name FROM categories WHERE name IN (SELECT parent_name FROM categories);
 ```
 
 ``` sql
--- TODO check if it's possible to refer to entity aliases in this way
---      may be `WITH ... AS` is the correct syntax to use
-SELECT Author FROM (SELECT Author, COUNT(ISBN) AS cnt FROM books GROUP BY Author) a WHERE cnt = (SELECT MAX(cnt) FROM a);
+WITH Authors AS (SELECT Author, COUNT(ISBN) AS cnt FROM books GROUP BY Author)
+SELECT Author FROM Authors WHERE cnt = (SELECT MAX(cnt) FROM Authors);
 ```
 
 ``` sql
-SELECT r.number, r.last_name, r.first_name FROM readers r JOIN (SELECT DISTINCT reader_number, ISBN FROM bookings) c ON r.number = c.number WHERE c.ISBN IN (SELECT ISBN FROM books WHERE Author = 'Марк Твен') HAVING COUNT(c.ISBN) = (SELECT COUNT(ISBN) FROM books WHERE Author = 'Марк Твен');
+SELECT r.number, r.last_name, r.first_name FROM readers r JOIN (SELECT DISTINCT reader_number, ISBN FROM bookings) c ON r.number = c.reader_number WHERE c.ISBN IN (SELECT ISBN FROM books WHERE Author = 'Марк Твен') GROUP BY r.number, r.last_name, r.first_name HAVING COUNT(c.ISBN) = (SELECT COUNT(ISBN) FROM books WHERE Author = 'Марк Твен');
 ```
 
 ``` sql
-SELECT i.ISBN AS ISBN, title FROM books p JOIN copies i ON p.ISBN = i.ISBN GROUP BY i.ISBN HAVING COUNT(number) > 1;
+SELECT i.ISBN AS ISBN, title FROM books p JOIN copies i ON p.ISBN = i.ISBN GROUP BY i.ISBN, title HAVING COUNT(number) > 1;
 ```
 
 ``` sql
-SELECT TOP 10 ISBN, title FROM books ORDER BY Year ASC;
+SELECT ISBN, title FROM books ORDER BY Year ASC LIMIT 10;
 ```
 
 ``` sql
-WITH Subcategories (Ancestor, Descender) AS (
+WITH RECURSIVE Subcategories (Ancestor, Descender) AS (
 	SELECT parent_name, name FROM categories
 	UNION ALL SELECT s.Ancestor, c.name FROM Subcategories s JOIN categories c ON s.Descender = c.parent_name
 ) SELECT Descender FROM Subcategories WHERE Ancestor = 'Спорт';
