@@ -43,3 +43,17 @@ WITH RECURSIVE Subcategories (Ancestor, Descender) AS (
 	UNION ALL SELECT s.Ancestor, c.name FROM Subcategories s JOIN categories c ON s.Descender = c.parent_name
 ) SELECT Descender FROM Subcategories WHERE Ancestor = 'Спорт';
 ```
+
+## Task 2
+
+``` sql
+INSERT INTO bookings(reader_number, ISBN, copy_number, return_date) SELECT r.number, 123456, 4, NOW() FROM readers r WHERE r.last_name = 'Петров' AND r.first_name = 'Василий';
+```
+
+``` sql
+DELETE FROM books WHERE year > 2000;
+```
+
+``` sql
+UPDATE bookings b SET return_date = return_date + INTERVAL '30 day' FROM book_categories c WHERE b.ISBN = c.ISBN AND c.category_name = 'Базы данных' AND b.return_date >= TIMESTAMP '2016-01-01';
+```
