@@ -1,7 +1,7 @@
-##I.	Почему любое отношение в реляционной схеме имеет по крайней мере один ключ?
+I.	Почему любое отношение в реляционной схеме имеет по крайней мере один ключ?
 В отношении не может быть двух одинаковых записей, таким образом, ключ является именно тем аттрибутом, который гарантирует уникальность записей.
 
-##II.	Перевод диаграмм из задания 2.
+II.	Перевод диаграмм из задания 2.
 1.	Библиотека:
 Reader: {[<ins>ReaderID: integer</ins>, Name: string, Surname: string, Address: string, Birthday: date]}
 Copy: {[<ins>CopyID: integer</ins>, Position: string, <ins>ISBN: integer</ins>]}
@@ -34,7 +34,7 @@ Role: {[<ins>Name: string</ins>, EntityName: string]}
 Key: {[<ins>Name:string</ins>, EntityName: string]}
 Participate: {[<ins>EntityName: string, RelationshipName: string</ins>]}
 
-##III.	
+III.	
 1. City: {[<ins>Name: string, Region: string</ins>]}
 Station: {[<ins>Name: string</ins>, #Tracks: integer, CityName: string, Region: string]}
 Train: {[<ins>TrainNr: integer</ins>, Length: integer, StationName: string, Departure: date, Arrival: date]}
