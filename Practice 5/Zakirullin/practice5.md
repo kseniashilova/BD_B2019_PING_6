@@ -1,46 +1,46 @@
 ## Task 1
 
 ``` sql
-SELECT Name, PubName FROM BookPublication;
+SELECT title, publisher_name FROM books;
 ```
 
 ``` sql
-SELECT ISBN, Name FROM BookPublication p WHERE p.NumberOfPages = (SELECT MAX(NumberOfPages) FROM BookPublication);
+SELECT ISBN, title FROM books p WHERE p.page_count = (SELECT MAX(page_count) FROM books);
 ```
 
 ``` sql
-SELECT Author FROM BookPublication GROUP BY Author HAVING COUNT(ISBN) > 5;
+SELECT Author FROM books GROUP BY Author HAVING COUNT(ISBN) > 5;
 ```
 
 ``` sql
-SELECT ISBN, Name FROM BookPublication p WHERE p.NumberOfPages > 2 * (SELECT AVG(NumberOfPages) FROM BookPublication);
+SELECT ISBN, title FROM books p WHERE p.page_count > 2 * (SELECT AVG(page_count) FROM books);
 ```
 
 ``` sql
-SELECT CatName FROM Category WHERE CatName IN (SELECT ParentName FROM Category);
+SELECT name FROM categories WHERE name IN (SELECT parent_name FROM categories);
 ```
 
 ``` sql
 -- TODO check if it's possible to refer to entity aliases in this way
 --      may be `WITH ... AS` is the correct syntax to use
-SELECT Author FROM (SELECT Author, COUNT(ISBN) AS cnt FROM BookPublication GROUP BY Author) a WHERE cnt = (SELECT MAX(cnt) FROM a);
+SELECT Author FROM (SELECT Author, COUNT(ISBN) AS cnt FROM books GROUP BY Author) a WHERE cnt = (SELECT MAX(cnt) FROM a);
 ```
 
 ``` sql
-SELECT r.ReaderID, r.LastName, r.FirstName FROM Reader r JOIN (SELECT DISTINCT ReaderID, ISBN FROM Capture) c ON r.ReaderID = c.ReaderID WHERE c.ISBN IN (SELECT ISBN FROM BookPublication WHERE Author = 'Марк Твен') HAVING COUNT(c.ISBN) = (SELECT COUNT(ISBN) FROM BookPublication WHERE Author = 'Марк Твен');
+SELECT r.number, r.last_name, r.first_name FROM readers r JOIN (SELECT DISTINCT reader_number, ISBN FROM bookings) c ON r.number = c.number WHERE c.ISBN IN (SELECT ISBN FROM books WHERE Author = 'Марк Твен') HAVING COUNT(c.ISBN) = (SELECT COUNT(ISBN) FROM books WHERE Author = 'Марк Твен');
 ```
 
 ``` sql
-SELECT i.ISBN AS ISBN, Name FROM BookPublication p JOIN BookInstance i ON p.ISBN = i.ISBN GROUP BY i.ISBN HAVING COUNT(InstanceId) > 1;
+SELECT i.ISBN AS ISBN, title FROM books p JOIN copies i ON p.ISBN = i.ISBN GROUP BY i.ISBN HAVING COUNT(number) > 1;
 ```
 
 ``` sql
-SELECT TOP 10 ISBN, Name FROM BookPublication ORDER BY Year ASC;
+SELECT TOP 10 ISBN, title FROM books ORDER BY Year ASC;
 ```
 
 ``` sql
 WITH Subcategories (Ancestor, Descender) AS (
-	SELECT ParentName, CatName FROM Category
-	UNION ALL SELECT s.Ancestor, c.CatName FROM Subcategories s JOIN Category c ON s.Descender = c.ParentName
+	SELECT parent_name, name FROM categories
+	UNION ALL SELECT s.Ancestor, c.name FROM Subcategories s JOIN categories c ON s.Descender = c.parent_name
 ) SELECT Descender FROM Subcategories WHERE Ancestor = 'Спорт';
 ```
