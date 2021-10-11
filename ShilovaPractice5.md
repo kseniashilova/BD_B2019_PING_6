@@ -115,11 +115,41 @@ WITH RECURSIVE category AS
 
 * Добавьте запись о бронировании читателем ‘Василеем Петровым’ книги с ISBN 123456 и номером копии 4.
 
+```sql
 INSERT INTO Borrowing (ReaderNr, ISBN, CopyNumber, ReturnDate)
-  SELECT ID, 
+  SELECT ID, "123456", 4, Null FROM Reader r
+  WHERE r.FirstName = "Василий" AND r.LastName = "Петров" ;
+```
 
 * Удалить все книги, год публикации которых превышает 2000 год.
+
+```sql
+
+DELETE FROM Copy c
+WHERE c.ISBN IN (SELECT ISBN FROM Book b
+                    WHERE b.PubYear > 2000) ;
+                    
+DELETE FROM Borrowing bor
+WHERE bor.ISBN IN (SELECT ISBN FROM Book b
+                    WHERE b.PubYear > 2000) ;
+                    
+DELETE FROM BookCat bc
+WHERE bc.ISBN IN (SELECT ISBN FROM Book b
+                    WHERE b.PubYear > 2000) ;
+
+DELETE FROM Book b
+WHERE b.PubYear > 2000 ;
+```
+
 * Измените дату возврата для всех книг категории "Базы данных", начиная с 01.01.2016, чтобы они были в заимствовании на 30 дней дольше (предположим, что в SQL можно добавлять числа к датам).
+
+```sql
+UPDATE Borrowing bor
+SET bor.ReturnDate = bor.ReturnDate + day(30)
+WHERE bor.ISBN in ( SELECT ISBN FROM BookCat bc
+                      WHERE bc.CategoryName = "Базы данных" )
+      AND bor.ReturnDate >= Date("01.01.2016")
+```
 
 
 ### Задача 3
@@ -140,6 +170,8 @@ SELECT s.Name, s.MatrNr FROM Student s
     SELECT * FROM Check c WHERE c.MatrNr = s.MatrNr AND c.Note >= 4.0 ) ; 
 ```
 
+Выбрать имя и номер для тех студентов, у которых нет ни одной оценки большей или равной 4.0.
+
 2.
 ```sql
 ( SELECT p.ProfNr, p.Name, sum(lec.Credit) 
@@ -152,6 +184,7 @@ FROM Professor p
 WHERE NOT EXISTS ( 
   SELECT * FROM Lecture lec WHERE lec.ProfNr = p.ProfNr )); 
 ```
+Выбрать номер, имя и сумму всех кредитов для профессоров, и считать, что сумма кредитов равна нулю, если у профессора нет ни одной лекции
 
 3.
 ```sql
@@ -161,3 +194,5 @@ SELECT s.Name, p.Note
     AND c.Note >= ALL ( 
       SELECT c1.Note FROM Check c1 WHERE c1.MatrNr = c.MatrNr ) 
 ```
+
+Выбрать имена и самые наибольшие оценки для студентов, для которых наибольшая оценка больше или равна 4
