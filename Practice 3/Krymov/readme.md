@@ -1,33 +1,78 @@
-1. There are 3 types of relations: one to one, one to many, many to many
-One to one scheme the key supposed to be any of keys for two entities, which are participate in 
-the relationship.
-One to many scheme key supposed to be the key of the entity, which we use to build 
-relationships with others.
-Many to many scheme key supposed to compose keys of all existed related entities. All 
-described keys could unify each combinations of relationships.
+## 1
 
-2. We have a relation with several records that are stored in similar fields. Difference is in
-CategoryName field. There are as many entries, as there are categories of the book. 
-{BookTitle, Book Year, BookAuthor, __BookISBN__, BookNumberOfPage}
-{ParentCategoryName}
-{__CategoryName__, __CopyNumber__, CopyPosition}
-{__ReaderNumber__, ReaderLastName, ReaderFirstName, ReaderBirthday, ReaderAddress}
-{ReturnDate}
+The key is a unique reference to the "entity", so each relation must have a unique identifier, so there must be at least one key in the relational schema.
 
-3. READER {ReaderNumber, ReaderFirstName, ReaderLastName, ReaderBirthday, ReaderAddress}
-BOOK {Year, Title, Author, ISBN, NumberOfPages}
-PUBLISHER{Address, Name}
-Category{CategoryName}
-COPY {PositionOnBookshelf, CopyNumber}
-BORROWS {ReaderNumber, ISBN, CopyNumber, ReturnDate}
-BOOK_ASSIGNS_TO_CATEGORY {Name}
+### 2.1
 
-* APARTMENT{HOUSE}
-HOUSE{STREET}
-STREET{CITY}
+- Category {[<ins>id</ins>, name, parent_category_id]}
 
-* ARBITRATOR {ArbitratorId}
-TEAM {TeamId}
+- Book:{[<ins>isbn</ins>, title, author, year, pages_count, publisher_id]}
 
-* MAN {PeopleId, MotherId, FatherId}
-WOMEN {PeopleId, MotherId, FatherId}
+- Copy {[<ins>id</ins>, position]}
+
+- Publisher {[<ins>id</ins>, name, address]}
+
+- Reader {[<ins>id</ins>, first_name, last_name, birthday, address]}
+
+- Borrow {[<ins>id</ins>, copy_id, reader_id, return_date]}
+
+### 2.2.1
+
+- Flat {[<ins>id</ins>, house_id]}
+
+- House {[<ins>id</ins>, street_id]}
+
+- Street {[<ins>id</ins>, city_id]}
+
+- City {[<ins>id</ins>, country_id]}
+
+- Country {[<ins>id</ins>]}
+
+### 2.2.2
+
+- Referee {[<ins>id</ins>]}
+
+- Team {[<ins>id</ins>]}
+
+- Play {[<ins>first_team_id</ins>, <ins>second_team_id</ins>, <ins>referee_id</ins>]}
+
+
+### 2.2.3
+
+- Man {[<ins>id</ins>, father_id, mother_id]}
+
+- Woman {[<ins>id</ins>, father_id, mother_id]}
+
+### 2.3
+
+- Object: {[ <ins>id</ins>]}
+
+- Child: {[<ins>id</ins>, parent_id, child_id, name, color]}
+
+
+### 3.1
+
+- schedule {[<ins>TrainNr</ins>, <ins>StationName</ins>, arrival, departure]}
+  
+- Train {[<ins>TrainNr</ins>, length, start, finish]}
+
+- City {[<ins>Name</ins>, <ins>Region</ins>]}
+
+- Station {[<ins>Name</ins>, #Tracks, nextStation, prevStation, city]}
+
+### 3.2
+
+- Patient {[<ins>PatientNr</ins>, name, disease, doctorNr, roomNr, admissionFrom, admissionTo]}
+
+- Station {[<ins>StatNr</ins>, name]}
+
+- Caregiver {[<ins>PersNr</ins>, qaulification]}
+
+- StationPersonell {[<ins>PersNr</ins>, #name, StatNr]}
+
+- Doctor {[<ins>PersNr</ins>, area, rank]}
+
+
+### 3.3
+
+- Room {[<ins>RoomNr</ins>, StatNr, beds]}

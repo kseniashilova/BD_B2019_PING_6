@@ -3,10 +3,10 @@
 
 ## Task 2 
 ### 1: Library
- - BookPublication: {[ <ins>ISBN</ins>, Name, Year, Author, NumberOfPages, PubId ]}
- - Category: {[ <ins>CatId</ins>, Name, ParentId ]}
- - categorizes: {[ <ins>CatId, ISBN</ins> ]}
- - Publisher: {[ <ins>PubId</ins>, Name, Address ]}
+ - BookPublication: {[ <ins>ISBN</ins>, Name, Year, Author, NumberOfPages, PubName ]}
+ - Category: {[ <ins>CatName</ins>, ParentName ]}
+ - categorizes: {[ <ins>CatName, ISBN</ins> ]}
+ - Publisher: {[ <ins>PubName</ins>, Address ]}
  - BookInstance: {[ <ins>ISBN, InstanceId</ins>, Position ]}
  - Reader: {[ <ins>ReaderID</ins>, LastName, FirstName, Address, DateOfBirth ]}
  - Capture: {[ <ins>ReaderID, ISBN, InstanceId</ins>, ReturnDate ]}  (would be a verb, if I hadn't used Martin notation)
@@ -45,7 +45,7 @@
  - City: {[ <ins>Region, Name</ins> ]}
  - Station: {[ <ins>Name</ins>, #Tracks, Region, CityName ]}
  - Train: {[ <ins>TrainNr</ins>, Length, StartStation, EndStation ]}
- - connected: {[ <ins>TrainNr_, Departure, _DepartureStation</ins>, Arrival, ArrivalStation ]}  (Ambiguous diagram! Assumed map from the train & any non-end station to the next station)
+ - connected: {[ <ins>TrainNr_, Departure, _DepartureStation</ins>, Arrival, ArrivalStation ]}  (Ambiguous diagram! Assumed map from the train & any non-end station to the next station) (Если будет транзитивное замыкание, придётся добавлять станцию прибытия тоже в ключ)
 
 ### 2: Personnel
  - Station: {[ <ins>StatNr</ins>, Name ]}
@@ -53,4 +53,4 @@
  - StationPersonnel: {[ <ins>PersNr</ins>, #Name, StatNr ]}
  - Caregiver: {[ <ins>PersNr</ins>, Qualification ]}
  - Doctor: {[ <ins>PersNr</ins>, Area, Rank ]}
- - Patient: {[ <ins>PatientNr</ins>, Name, Disease, TreatingDoctor, AdmitedRoomStatNr, AdmitedRoomNr, AdmissionFrom, AdmissionTo ]}
+ - Patient: {[ <ins>PatientNr</ins>, Name, Disease, PersNr (formerly TreatingDoctor), AdmitedRoomStatNr, AdmitedRoomNr, AdmissionFrom, AdmissionTo ]}
