@@ -70,11 +70,11 @@ SELECT r.ID, r.LastName, r.FirstName, r.Address, r.BirthDate FROM
    FROM Reader r
       JOIN Borrowing bor ON bor.ReaderNR = r.ID
       JOIN Book book ON book.ISBN = bor.ISBN
-    WHERE Author = "Марк Твен"
+    WHERE Author = 'Марк Твен'
     GROUP BY r.ID)
 WHERE count = (
         SELECT COUNT(*) FROM Book b
-          WHERE b.Author = "Марк Твен"
+          WHERE b.Author = 'Марк Твен'
 ) ;
 ```
 
@@ -101,7 +101,7 @@ SELECT * FROM Book b
 WITH RECURSIVE category AS
  (
    SELECT c.CategoryName, c.ParentCat FROM Category c
-   WHERE c.ParentCat = "Спорт"
+   WHERE c.ParentCat = 'Спорт'
    UNION ALL
    SELECT category.CategoryName, category.ParentCat
     FROM category, Category c2
@@ -119,7 +119,7 @@ WITH RECURSIVE category AS
 ```sql
 INSERT INTO Borrowing (ReaderNr, ISBN, CopyNumber, ReturnDate)
   SELECT ID, "123456", 4, Null FROM Reader r
-  WHERE r.FirstName = "Василий" AND r.LastName = "Петров" ;
+  WHERE r.FirstName = 'Василий' AND r.LastName = 'Петров' ;
 ```
 
 * Удалить все книги, год публикации которых превышает 2000 год.
@@ -148,8 +148,8 @@ WHERE b.PubYear > 2000 ;
 UPDATE Borrowing bor
 SET bor.ReturnDate = bor.ReturnDate + day(30)
 WHERE bor.ISBN in ( SELECT ISBN FROM BookCat bc
-                      WHERE bc.CategoryName = "Базы данных" )
-      AND bor.ReturnDate >= Date("01.01.2016")
+                      WHERE bc.CategoryName = 'Базы данных' )
+      AND bor.ReturnDate >= Date('01.01.2016')
 ```
 
 
