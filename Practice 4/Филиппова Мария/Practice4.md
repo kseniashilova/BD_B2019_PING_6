@@ -1,56 +1,84 @@
 ## Задача 1
-a) select LastName  
-   from Reader  
-   where Address = "Москва"  
+a) Какие фамилии читателей в Москве?
 
-б) select book.Title, book.Author  
-   from Book book, Reader r, Borrowing b  
-   where book.ISBN = b.ISBN and b.ReaderNr =   
-   (select r.ID   
-    from Reader r  
-    where r.FirstName = "Иван" and r.LastName = "Иванов")  
+'''
+   SELECT LastName  
+   FROM Reader  
+   WHERE Address = 'Москва'  
+'''
 
-в) select ISBN  
-   from BookCat  
-   where CategoryName = "Горы"  
-   minus   
-   (select ISBN  
-   from BookCat  
-   where CategoryName = "Путешествия")  
+б) Какие книги брал Иван Иванов?
+  
+'''
+   SELECT book.Title, book.Author  
+   FROM Book book, Reader r, Borrowing b  
+   WHERE book.ISBN = b.ISBN AND b.ReaderNr =   
+   (SELECT r.ID   
+    FROM Reader r  
+    WHERE r.FirstName = "Иван" AND r.LastName = "Иванов")
+'''
 
-г) select r.lastname, r.firstname from borrowing b  
-   left join reader r on b.readernr = r.id  
-   where b.copynumber != null and b.returndate != null  
+в) Какие книги (ISBN) в категории "Горы" не отосятся к категории "Путешествия"?  
+'''
+   SELECT ISBN  
+   FROM BookCat  
+   WHERE CategoryName = "Горы"  
+   MINUS   
+   (SELECT ISBN  
+   FROM BookCat  
+   WHERE CategoryName = "Путешествия")  
+'''
 
-д) select r.lastname, r.firstname   
-   from (select distinct b.isbn, b.readernr from borrowing b jeft join reader r on b.readernr = r.id  
-   where r.lastname = 'Иванов' and r.firstname = 'Иван' and b.copynumber = null) t1  
-   left join borrowing b on t1.isbn != b.isbn and t1.readernr = b.readernr  
-   left join reader r on b.readernr = r.id  
+г) Какие читатели вернули копию книги?
+'''
+   SELECT r.LastName, r.FirstName 
+   FROM Borrowing b  
+   LEFT JOIN Reader r ON b.ReaderNr = r.ID 
+   WHERE b.CopyNumber != NULL AND b.ReturnDate != NULL  
+'''
+
+д) Какие читатели брали хотя бы одну книгу (не копию), которую брал также Иван Иванов?
+'''
+   SELECT r.LastName, r.FirstName   
+   FROM (SELECT DISTINCT b.ISBN, b.ReaderNr 
+         FROM Borrowing b LEFT JOIN Reader r ON b.ReaderNr = r.ID  
+         WHERE r.LastName = 'Иванов' AND r.FirstName = 'Иван' AND b.CopyNumber IS NULL) tmp 
+   LEFT JOIN Borrowing b ON tmp.ISBN != b.ISBN AND tmp.ReaderNr = b.ReaderNr  
+   LEFT JOIN Reader r ON b.ReaderNr = r.ID
+'''
 
 ## Задача 2
-а) select *  
-   from Connection  
-   where FromStation = "Москва" and ToStation = "Тверь"  
+а) Все прямые рейсы из Москвы в Тверь
+'''
+   SELECT *  
+   FROM Connection  
+   WHERE FromStation = "Москва" AND ToStation = "Тверь"  
+'''
 
-б) select TrainNr, count(TrainNr) over (partition by TraiNr, day(Departure)) as segm  
-   from connection  
-   where day(Departure) = day(Arrival) and FromStation = 'Москва' and ToStation = 'Санкт-Петербург'   
-   having segm >= 3  
+б) Найти все многосегментные маршруты, имеющие точно однодневный трансфер из Москвы в Санкт-Петербург
+'''
+   SELECT TrainNr, COUNT(TrainNr) OVER (PARTITION BY TraiNr, DAY(Departure)) AS segment  
+   FROM Connection  
+   WHERE DAY(Departure) = DAY(Arrival) AND FromStation = 'Москва' and ToStation = 'Санкт-Петербург'   
+   HAVING segment >= 3  
+'''
 
-в) 
-	а) select TrainNr, lead(ToStation) over (partition by TrainNr, day(Departure) order by Arrival) as next_station  
-     from connection  
-     where FromStation = 'Москва'  
-     having next_station = 'Санкт-Петербург'  
-
-
-	б) select TrainNr, lead(ToStation) over (partition by TrainNr, day(Departure) order by Arrival) as next_station  
-     from connection  
-     where day(Departure) = day(Arrival) and FromStation = 'Москва'  
-     having next_station = 'Санкт-Петербург'  
+в) Если отношение Connection не содержит дополнительных кортежей для транзитивного замыкания
+а) 
+'''
+     SELECT TrainNr, LEAD(ToStation) OVER (PARTITION BY TrainNr, DAY(Departure) ORDER BY Arrival) AS next_station  
+     FROM Connection  
+     WHERE FromStation = 'Москва'  
+     HAVING next_station = 'Санкт-Петербург' 
+'''
+б) 
+'''  
+     SELECT TrainNr, LEAD(ToStation) OVER (PARTITION BY TrainNr, DAY(Departure) ORDER BY Arrival) AS next_station  
+     FROM Connection  
+     WHERE DAY(Departure) = DAY(Arrival) AND FromStation = 'Москва'  
+     HAVING next_station = 'Санкт-Петербург' 
+'''
 
 ## Задача 3
 
-
-   
+П<sub>&alpha;<sub>1</sub>, .., &alpha;<sub>m</sub>, R.&gamma;<sub>1</sub>, .., R.&gamma;<sub>n</sub>, &beta;<sub>1</sub>, .., &beta;<sub>k</sub></sub>(&sigma;<sub>R.&gamma;<sub>1</sub> = L.&gamma;<sub>1</sub> &and; .. &and; R.&gamma;<sub>n</sub> = L.&gamma;<sub>n</sub></sub>(R &times;L))&cup;П<sub>&alpha;<sub>1</sub>, .., &alpha;<sub>m</sub>, R.&gamma;<sub>1</sub>, .., R.&gamma;<sub>n</sub>, &beta;<sub>1</sub>, .., &beta;<sub>k</sub></sub>(L - &sigma;<sub>R.&gamma;<sub>1</sub>=L.&gamma;<sub>1</sub> &and; .. &and; R.&gamma;<sub>n</sub>=L.&gamma;<sub>n</sub></sub>(L))&cup;П<sub>&alpha;<sub>1</sub>, .., &alpha;<sub>m</sub>, R.&gamma;<sub>1</sub>, .., R.&gamma;<sub>n</sub>, &beta;<sub>1</sub>, .., &beta;<sub>k</sub></sub>(R - &sigma;<sub>R.&gamma;<sub>1</sub>=L.&gamma;<sub>1</sub> &and; .. &and; R.&gamma;<sub>n</sub>=L.&gamma;<sub>n</sub></sub>(R))
