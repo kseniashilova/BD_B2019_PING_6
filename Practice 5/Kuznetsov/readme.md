@@ -56,30 +56,26 @@
 ## ТОП 10 самых старых книг
     select title from books order by year limit 10;
 ## Перечислите все категории в категории “Спорт” (с любым уровнем вложености).
-    with recursive
-        current_category
-    as
-    (
-        select
-            *
-        from
-            categories
-        where
-            categories.parent_name = 'Спорт'
-        union all
-        select
-            current_category.*
-        from
-            categories
-            join
-                current_category
-                on
-                    current_category.parent_name = current_category.name
-    )
-    select distinct
-        name
+with recursive categories2 as
+(
+    select
+          c.name, c.parent_name
     from
-        current_category;
+        categories as c
+    where
+         c.parent_name = 'Спорт'
+    union all
+
+    select
+          c.name, c.parent_name
+    from categories as c
+        inner join categories2 as c2
+            on c.parent_name = c2.name
+)
+select
+    *
+from
+    categories2
 # Task 2
 ## Добавьте запись о бронировании читателем ‘Василеем Петровым’ книги с ISBN 123456 и номером копии 4.
 insert into bookings (reader_number, isbn, copy_number, return_date)
