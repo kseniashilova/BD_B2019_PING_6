@@ -15,7 +15,7 @@ BookCategory ( ISBN, CategoryName ) <br>
 ```sql
 SELECT LastName
 FROM Reader
-WHERE 'Москва' IN Address;
+WHERE Address LIKE '%Москва%';
 ```
 
 <b> б) Какие книги (author, title) брал Иван Иванов? </b>
@@ -52,6 +52,7 @@ SELECT DISTINCT Reader.LastName,
                 Reader.FirstName
 FROM Borrowing
          JOIN Reader ON Reader.Id = Borrowing.ReaderId;
+WHERE Borrowing.ReturnDate < current_date()
 ```
 
 <b> д) Какие читатели (LastName, FirstName) брали хотя бы одну книгу (не копию), которую брал также Иван Иванов (не включайте Ивана Иванова в результат)? </b>
