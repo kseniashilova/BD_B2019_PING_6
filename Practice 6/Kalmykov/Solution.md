@@ -12,6 +12,13 @@
 
 Найдите всех игроков, которые выиграли хотя бы одну медаль (GOLD, SILVER и BRONZE) на одной Олимпиаде. (player-name, olympic-id).
 
+```sql
+SELECT p.name, o.olympic_id FROM players p
+JOIN results r ON p.player_id = r.player_id
+JOIN events e ON r.event_id = e.event_id
+JOIN olympics o ON e.olympic_id = o.olympic_id;
+```
+
 ## Задание 4
 
 В какой стране был наибольший процент игроков (из перечисленных в наборе данных), чьи имена начинались с гласной?
