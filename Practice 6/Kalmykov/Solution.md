@@ -8,6 +8,14 @@
 
 Перечислите все индивидуальные (не групповые) соревнования, в которых была ничья в счете, и два или более игрока выиграли золотую медаль.
 
+```sql
+SELECT e.name, e.event_id FROM results r
+JOIN events e ON e.event_id = r.event_id
+WHERE e.is_team_event = 0 AND r.medal = 'GOLD'
+GROUP BY e.name, e.event_id
+HAVING count(*) >= 2;
+```
+
 ## Задание 3
 
 Найдите всех игроков, которые выиграли хотя бы одну медаль (GOLD, SILVER и BRONZE) на одной Олимпиаде. (player-name, olympic-id).
