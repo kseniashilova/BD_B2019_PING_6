@@ -59,3 +59,27 @@ LIMIT 1;
 ## Задание 5
 
 Для Олимпийских игр 2000 года найдите 5 стран с минимальным соотношением количества групповых медалей к численности населения.
+
+```sql
+WITH country(country_id, count) AS (
+    SELECT p.country_id, count(*)
+    FROM results r
+             JOIN events e ON r.event_id = e.event_id
+             JOIN olympics o ON e.olympic_id = o.olympic_id
+             JOIN players p ON r.player_id = p.player_id
+    WHERE o.year = 2000
+      AND e.is_team_event = 1
+    GROUP BY p.country_id
+),
+     country_population(country_id, population) AS (
+         SELECT c.country_id, c.population
+         FROM countries c
+     )
+
+
+SELECT country.country_id, cast(country.count as decimal) / population AS share
+FROM country
+         JOIN country_population ON country.country_id = country_population.country_id
+ORDER BY share
+LIMIT 5;
+```
