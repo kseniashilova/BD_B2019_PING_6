@@ -4,6 +4,17 @@
 количество золотых медалей), содержащий годы, в которые родились игроки, количество игроков, 
 родившихся в каждый из этих лет, которые выиграли по крайней мере одну золотую медаль, и количество золотых медалей, завоеванных игроками, родившимися в этом году.
 
+```sql
+SELECT extract(YEAR FROM p.birthdate), COUNT(DISTINCT p.player_id) as players, COUNT(*) as medals
+FROM players p
+         JOIN results r on p.PLAYER_ID = r.PLAYER_ID
+         JOIN events e on e.EVENT_ID = r.EVENT_ID
+         JOIN olympics o on o.OLYMPIC_ID = e.OLYMPIC_ID
+WHERE o.year = 2004
+  AND r.medal = 'GOLD'
+GROUP BY EXTRACT(YEAR FROM p.birthdate);
+```
+
 ## Задание 2
 
 Перечислите все индивидуальные (не групповые) соревнования, в которых была ничья в счете, и два или более игрока выиграли золотую медаль.
