@@ -1,9 +1,9 @@
 ## Задание 
 Данные:  
-Teams{country, team_id, population} -- сборные стран;  
-Athletes{name, athlete_id, country, birthday, gender} -- спортсмены; 
-Events{event_id, name, place, olympiad_id, type, time} -- соревнования;  
-Achievements{event_id, athlete_id, medal} -- достижения спортсменов.   
+Teams{country, team_id, population} - сборные стран;  
+Athletes{name, athlete_id, country, birthday, gender} - спортсмены;   
+Events{event_id, name, place, olympiad_id, type, time} - соревнования;  
+Achievements{event_id, athlete_id, medal} - достижения спортсменов.   
 
 1. Для Олимпийских игр 2004 года сгенерируйте список (год рождения, количество игроков, количество золотых медалей), содержащий годы, в которые родились игроки, количество игроков, родившихся в каждый из этих лет, которые выиграли по крайней мере одну золотую медаль, и количество золотых медалей, завоеванных игроками, родившимися в этом году.  
 ```
