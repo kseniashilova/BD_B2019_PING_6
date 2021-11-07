@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql:// # path to db
-    username: # my username
-    password: # my password
+    url: jdbc:postgresql:// # localhost:5432/postgres
+    username: # superUser
+    password: # superPassword
   jpa:
     hibernate:
       ddl-auto: create-drop
