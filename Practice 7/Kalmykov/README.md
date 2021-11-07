@@ -1,6 +1,6 @@
 # Инструкция по использованию
 
-1) Открыть проект в db-filler в IntelliJ IDEA
+1) Открыть проект db-filler в IntelliJ IDEA
 2) В файле db-filler/src/main/resources/application.yml указать url, username, password для БД
 3) Запустить проект через кнопку запуска
 4) Для добавления достаточно сделать GET запрос с параметром amount и указанием имени сущности localhost:8080/<table_name>?amount=10
