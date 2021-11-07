@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: # my url
+    username: # my username
+    password: # my password
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
