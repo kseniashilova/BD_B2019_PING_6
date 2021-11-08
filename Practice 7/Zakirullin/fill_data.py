@@ -7,7 +7,7 @@ import models
 import faker
 import random
 
-DEFAULT_DB_URL = 'postgresql://localhost:5432/practice7'
+DEFAULT_DB_URL = 'postgresql://:qwerty@localhost:5432/practice7'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-u', '--database-url', type=str, default=DEFAULT_DB_URL)
