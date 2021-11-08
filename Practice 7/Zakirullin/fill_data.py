@@ -1,11 +1,12 @@
 #! /usr/bin/env python3.8
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
 import argparse
 import models
 import faker
 import random
+import operator
 
 DEFAULT_DB_URL = 'postgresql://:qwerty@localhost:5432/practice7'
 
@@ -82,11 +83,40 @@ fake_events = [models.Event(event_id=f'E{i}',
                               for i in range(args.events_number))]
 session.add_all(fake_events)
 
-fake_results = [models.Result(event_id=random.choice(fake_events).event_id,
-            player_id=random.choice(fake_players).player_id,
-            medal=random.choice(('GOLD', 'SILVER', 'BRONZE')),
-            result=random.randint(1, 10000) / 100)
-        for _ in range(args.results_number)]
+@list
+@operator.methodcaller('__call__')
+def fake_results():
+    medals = ('GOLD', 'SILVER', 'BRONZE')
+    num_players = func.count(models.Player.player_id)
+    countries_with_num_players = \
+        session.query(models.Country, num_players).\
+        filter(models.Country.country_id == models.Player.country_id).\
+        group_by(models.Country)
+    n_results = args.results_number
+    max_events = min((n_results + 2) // 3, len(fake_events))
+    for ev in random.sample(fake_events, max_events):
+        players_per_team = max(1, ev.num_players_in_team)
+        matching_countries = countries_with_num_players.\
+            having(num_players >= players_per_team).all()
+        if len(matching_countries) < len(medals):
+            matching_countries = countries_with_num_players.all()
+        countries = [country for (country, _) in
+                     random.sample(matching_countries,
+                     len(medals))]
+        for (country, medal) in zip(countries, medals):
+            result = random.randint(1, 10000) / 100
+            players = random.sample(country.players, min(players_per_team,
+                                                         len(country.players)))
+            for player in players:
+                if n_results < 1:
+                    return
+                n_results -= 1
+                yield models.Result(event_id=ev.event_id,
+                                    player_id=player.player_id,
+                                    medal=medal,
+                                    result=result)
+
+
 session.add_all(fake_results)
 
 session.commit()

@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer, Date, Float, \
         ForeignKey, CheckConstraint
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
 
@@ -12,6 +12,7 @@ class Country(Base):
     country_id = Column(String(3), primary_key=True)
     area_sqkm = Column(Integer)
     population = Column(Integer)
+    players = relationship('Player', backref='country')
 
 
 class Olympic(Base):
