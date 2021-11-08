@@ -49,20 +49,20 @@ fake_countries = [models.Country(name=c['name'], country_id=c['alpha-3-code'],
 session.add_all(fake_countries)
 
 fake_olympics = [
-        models.Olympic(olympic_id=f'{start_date[:4]}{city[:3].upper()}',
+        models.Olympic(olympic_id=f'{start_date.year}{city[:3].upper()}',
             country_id=random.choice(fake_countries).country_id,
             city=city,
-            year=int(start_date.split('-')[0]),
+            year=start_date.year,
             startdate=start_date,
             enddate=f.date_between_dates(start_date))
-        for (start_date, city) in ((f.date(), f.city())
+        for (start_date, city) in ((f.date_between_dates(), f.city())
             for _ in range(args.olympics_number))]
 session.add_all(fake_olympics)
 
-fake_players = [models.Player(name=' '.join(name())[:40],
+fake_players = [models.Player(name=' '.join(name)[:40],
             player_id=f'{name[-1][:5]}{name[0][:3]}{i % 100:02}',
             country_id=random.choice(fake_countries).country_id,
-            birthdate=f.date())
+            birthdate=f.date_between_dates())
         for (name, i) in ((f.name().split(), i)
             for i in range(args.players_number))]
 session.add_all(fake_players)
@@ -70,7 +70,7 @@ session.add_all(fake_players)
 fake_events = [models.Event(event_id=f'E{i}',
             name=f.bs()[:40],
             eventtype=random.choice(('ATH', 'SWI')),
-            olympic_id=random.choice(olympics).olympic_id,
+            olympic_id=random.choice(fake_olympics).olympic_id,
             is_team_event=t,
             num_players_in_team=random.randint(1, 10) if t else -1,
             result_noted_in=f.currency()[:100])
@@ -81,7 +81,7 @@ session.add_all(fake_events)
 fake_results = [models.Result(event_id=random.choice(fake_events).event_id,
             player_id=random.choice(fake_players).player_id,
             medal=random.choice(('GOLD', 'SILVER', 'BRONZE')),
-            result=random.randint(10000) / 100)
+            result=random.randint(1, 10000) / 100)
         for _ in range(args.results_number)]
 session.add_all(fake_results)
 
