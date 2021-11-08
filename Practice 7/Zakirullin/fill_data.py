@@ -67,6 +67,7 @@ fake_players = [models.Player(name=' '.join(name)[:40],
             for i in range(args.players_number))]
 session.add_all(fake_players)
 
+session.flush()
 fake_events = [models.Event(event_id=f'E{i}',
             name=f.bs()[:40],
             eventtype=random.choice(('ATH', 'SWI')),
