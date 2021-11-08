@@ -9,7 +9,7 @@ class Country(Base):
     __tablename__ = 'Countries'
 
     name = Column(String(40))
-    country_id = Column(String(3), unique=True)
+    country_id = Column(String(3), primary_key=True)
     area_sqkm = Column(Integer)
     population = Column(Integer)
 
@@ -17,7 +17,7 @@ class Country(Base):
 class Olympic(Base):
     __tablename__ = 'Olympics'
 
-    olympic_id = Column(String(7), unique=True)
+    olympic_id = Column(String(7), primary_key=True)
     country_id = Column(String(3), ForeignKey('Countries.country_id'))
     city = Column(String(50))
     year = Column(Integer)
@@ -29,7 +29,7 @@ class Player(Base):
     __tablename__ = 'Players'
 
     name = Column(String(40))
-    player_id = Column(String(10), unique=True)
+    player_id = Column(String(10), primary_key=True)
     country_id = Column(String(3), ForeignKey('Countries.country_id'))
     birthdate = Column(Date)
 
@@ -37,7 +37,7 @@ class Player(Base):
 class Event(Base):
     __tablename__ = 'Events'
 
-    event_id = Column(String(7), unique=True)
+    event_id = Column(String(7), primary_key=True)
     name = Column(String(40))
     eventtype = Column(String(20))
     olympic_id = Column(String(7), ForeignKey('Olympics.olympic_id'))
@@ -49,7 +49,7 @@ class Event(Base):
 class Result(Base):
     __tablename__ = 'Results'
 
-    event_id = Column(String(7), ForeignKey('Events.event_id'))
-    player_id = Column(String(10), ForeignKey('Players.player_id'))
+    event_id = Column(String(7), ForeignKey('Events.event_id'), primary_key=True)
+    player_id = Column(String(10), ForeignKey('Players.player_id'), primary_key=True)
     medal = Column(String(7))
     result = Column(Float)
