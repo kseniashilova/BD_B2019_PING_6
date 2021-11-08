@@ -44,39 +44,42 @@ sampled_countries = random.sample(faker.providers.date_time.Provider.countries,
                                   args.countries_number)
 
 fake_countries = [models.Country(name=c['name'], country_id=c['alpha-3-code'],
-    area_sqkm=random.randint(1, 20000000),
-    population=random.randint(1, 20000000)) for c in sampled_countries]
+                  area_sqkm=random.randint(1, 20000000),
+                  population=random.randint(1, 20000000))
+                  for c in sampled_countries]
 session.add_all(fake_countries)
 
 fake_olympics = [
-        models.Olympic(olympic_id=f'{start_date.year}{city[:3].upper()}',
-            country_id=random.choice(fake_countries).country_id,
-            city=city,
-            year=start_date.year,
-            startdate=start_date,
-            enddate=f.date_between_dates(start_date))
+        models.Olympic(olympic_id=f'{start_date.year}{city[:2]}{city[-1]}'.
+                       upper(),
+                       country_id=random.choice(fake_countries).country_id,
+                       city=city,
+                       year=start_date.year,
+                       startdate=start_date,
+                       enddate=f.date_between_dates(start_date))
         for (start_date, city) in ((f.date_between_dates(), f.city())
-            for _ in range(args.olympics_number))]
+                                   for _ in range(args.olympics_number))]
 session.add_all(fake_olympics)
 
 fake_players = [models.Player(name=' '.join(name)[:40],
-            player_id=f'{name[-1][:5]}{name[0][:3]}{i % 100:02}',
-            country_id=random.choice(fake_countries).country_id,
-            birthdate=f.date_between_dates())
-        for (name, i) in ((f.name().split(), i)
-            for i in range(args.players_number))]
+                player_id=f'{name[-1][:5]}{name[0][:3]}{i % 100:02}',
+                country_id=random.choice(fake_countries).country_id,
+                birthdate=f.date_between_dates())
+                for (name, i) in ((f.name().split(), i)
+                                  for i in range(args.players_number))]
 session.add_all(fake_players)
 
 session.flush()
 fake_events = [models.Event(event_id=f'E{i}',
-            name=f.bs()[:40],
-            eventtype=random.choice(('ATH', 'SWI')),
-            olympic_id=random.choice(fake_olympics).olympic_id,
-            is_team_event=t,
-            num_players_in_team=random.randint(1, 10) if t else -1,
-            result_noted_in=f.currency()[:100])
-        for (i, t) in ((i, random.choice((0, 1)))
-            for i in range(args.events_number))]
+               name=f.bs()[:40],
+               eventtype=random.choice(('ATH', 'SWI')),
+               olympic_id=random.choice(fake_olympics).olympic_id,
+               is_team_event=t,
+               num_players_in_team=random.randint(1, 10) if t else -1,
+               result_noted_in=f.currency()[:100])  # I haven't found \
+               # anything better
+               for (i, t) in ((i, random.choice((0, 1)))
+                              for i in range(args.events_number))]
 session.add_all(fake_events)
 
 fake_results = [models.Result(event_id=random.choice(fake_events).event_id,
