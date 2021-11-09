@@ -112,14 +112,16 @@ from owner o1
 join  apartment a1 on a1.owner_id == o1.id
 join rent r1 on a1.id == r1.apartment_id
 where a1.cost_of_day * (r1.end_date.day() - r1.start_date.day()) in
+(select sum(summ) as sum from
   (
-    select  sum(a.cost_of_day * (r.end_date.day() - r.start_date.day())) as sum
+    select  sum(a.cost_of_day * (r.end_date.day() - r.start_date.day())) as summ, r.approve_date.year() as year
     from apartment a
     join rent r on a.id == r.apartment_id
     where r.approve_date != NULL and r.cancel_date == NULL and (now().year() == r.approve_date.year())
-    order by sum desc
-    limit 3
   )
+ where year == (now().year - 1)
+ order by sum desc
+ limit 3)
 ```
 
 Task 8.
