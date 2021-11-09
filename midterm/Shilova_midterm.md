@@ -114,12 +114,14 @@ join rent r1 on a1.id == r1.apartment_id
 where a1.cost_of_day * (r1.end_date.day() - r1.start_date.day()) in
 (select sum(summ) as sum from
   (
-    select  sum(a.cost_of_day * (r.end_date.day() - r.start_date.day())) as summ, r.approve_date.year() as year
+    select  sum(a.cost_of_day * (r.end_date.day() - r.start_date.day())) as summ, a.owner_id as owner_id
     from apartment a
     join rent r on a.id == r.apartment_id
-    where r.approve_date != NULL and r.cancel_date == NULL and (now().year() == r.approve_date.year())
+    where r.approve_date != NULL and r.cancel_date == NULL
+    group by r.approve_date.year()
+    having r.approve_date.year() == now().year() - 1
   )
- where year == (now().year - 1)
+ group by owner_id
  order by sum desc
  limit 3)
 ```
@@ -128,6 +130,7 @@ Task 8.
 ``` sql
 select host1.host_id, host2.host_id
 from 
+(
 (select host_id, id, start_date, end_date
 from  apartment a1
 join rent r1 on a1.id == r1.apartment_id
@@ -138,5 +141,6 @@ from  apartment a2
 join rent r2 on a2.id == r2.apartment_id
 where r2.cancel_date == NULL and r2.reject_date == NULL
   and r2.start_date.year() == host1.start_date.year() and abs((r2.end_date.day() - r2.start_date.day()) - (host1.end_date.day() - host1.start_date.day()) <= 3) as host2
+)
 )
 ```
