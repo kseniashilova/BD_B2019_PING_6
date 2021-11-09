@@ -107,12 +107,7 @@ group by a.country
 
 Task 7.
 ``` sql
-select o1.id, o1.name
-from owner o1
-join  apartment a1 on a1.owner_id == o1.id
-join rent r1 on a1.id == r1.apartment_id
-where a1.cost_of_day * (r1.end_date.day() - r1.start_date.day()) in
-(select sum(summ) as sum from
+(select owner_id, sum(summ) as sum from
   (
     select  sum(a.cost_of_day * (r.end_date.day() - r.start_date.day())) as summ, a.owner_id as owner_id
     from apartment a
