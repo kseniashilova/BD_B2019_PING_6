@@ -135,7 +135,9 @@ union
 from  apartment a2
 join rent r2 on a2.id == r2.apartment_id
 where r2.cancel_date == NULL and r2.reject_date == NULL
-  and r2.start_date.year() == host1.start_date.year() and abs((r2.end_date.day() - r2.start_date.day()) - (host1.end_date.day() - host1.start_date.day()) <= 3) as host2
+  and r2.start_date.year() == host1.start_date.year() and 
+  abs((r2.end_date.day() - r2.start_date.day()) - (host1.end_date.day() - host1.start_date.day()) <= 3
+  and r2.appartment_id == host1.id) as host2
 )
 )
 ```
