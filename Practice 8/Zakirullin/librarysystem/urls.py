@@ -21,7 +21,7 @@ from .mainapp import views
 router = routers.DefaultRouter()
 router.register(r'books', views.BookViewSet)
 router.register(r'copies', views.CopyViewSet)
-router.register(r'borrowings', views.CopyViewSet)
+router.register(r'borrowings', views.BorrowingViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
