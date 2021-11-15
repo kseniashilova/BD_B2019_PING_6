@@ -31,24 +31,31 @@ class Category(models.Model):
 
 
 class Copy(models.Model):
-    book = models.ForeignKey('Book', primary_key=True,
-                             on_delete=models.PROTECT)
-    copy_number = models.IntegerField(primary_key=True)
+    book = models.ForeignKey('Book', on_delete=models.PROTECT)
+    copy_number = models.IntegerField()
     shelf_position = models.CharField(max_length=20)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['book', 'copy_number'],
+                       name='copy_composite_workaround_uk')]
 
 
 class Borrowing(models.Model):
-    reader = models.ForeignKey('Reader', primary_key=True,
-                               on_delete=models.CASCADE)
-    book_copy = models.ForeignKey('Copy', primary_key=True,
-                                  on_delete=models.CASCADE)
+    reader = models.ForeignKey('Reader', on_delete=models.CASCADE)
+    book_copy = models.ForeignKey('Copy', on_delete=models.CASCADE)
     # Don't we need to allow multiple borrowings of the same copy by the same
     # reader?
     return_date = models.DateField()
 
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['reader', 'book_copy'],
+                       name='borrowing_composite_workaround_uk')]
+
 
 class BookCat(models.Model):
-    book = models.ForeignKey('Book', primary_key=True,
-                             on_delete=models.CASCADE)
-    category = models.ForeignKey('Category', primary_key=True,
-                                 on_delete=models.CASCADE)
+    book = models.ForeignKey('Book', on_delete=models.CASCADE)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['book', 'category'],
+                       name='bookcat_composite_workaround_uk')]
