@@ -3,7 +3,9 @@ from django.db import models
 
 # Create your models here.
 class Reader(models.Model):
-    number = models.IntegerField(primary_key=True)
+    # number = models.IntegerField(primary_key=True)  # Doesn't seem to work
+    # # with django_seed if there are foreign keys refering to this model
+    number = models.AutoField(primary_key=True)
     last_name = models.CharField(max_length=30)
     first_name = models.CharField(max_length=30)
     address = models.CharField(max_length=200)
