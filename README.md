@@ -258,10 +258,10 @@ SELECT * FROM emp WHERE salary = 200;
 Для каждого из следующих операторов укажите максимальный размер буфера основной памяти, который он может использовать, и минимально возможный размер буфера основной памяти, оба в зависимости от размера ввода.
 
 * Nested-loop Join
-*	(Grace) Hash Join
-*	Sort Merge Join
-*	Table Scan 
-*	Index Scan  (Доступ к таблице с помощью B-дерева. Внимание: вам нужны два буфера: один для B-дерева и один для блоков таблицы)
+* (Grace) Hash Join
+* Sort Merge Join
+* Table Scan 
+* Index Scan  (Доступ к таблице с помощью B-дерева. Внимание: вам нужны два буфера: один для B-дерева и один для блоков таблицы)
 Какую стратегию замены вы бы использовали?
 
 ### Задача 3
@@ -278,7 +278,7 @@ Order(Oid, Customer, Volume)
 Кроме того, предположим, что у нас есть следующий запрос, который запрашивает общий объем заказов Клиента(Customer) по имени “Alex”.:
 
 ```sql
-SELECT sum(o.Volume)FROM Customer c, Order o
+SELECT sum(o.Volume) FROM Customer c, Order o
 WHERE c.Cid = o.Customer AND c.Name = “Alex”; 
 ```
 
@@ -293,7 +293,7 @@ WHERE c.Cid = o.Customer AND c.Name = “Alex”;
 Предположим, у нас есть следующий запрос:
 
 ```sql
-SELECT *FROM R, S, T
+SELECT * FROM R, S, T
 WHERE R.rid = S.sid AND S.sid = T.tid AND T.tid = R.rid 
 ```
 
