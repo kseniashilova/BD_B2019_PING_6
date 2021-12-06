@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql:// # localhost:5432/superBd
+    username: # superUser
+    password: # superPassword
+  jpa:
+    hibernate:
+      ddl-auto: update
