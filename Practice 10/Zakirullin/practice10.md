@@ -6,7 +6,8 @@ BD → BDEG → BCDEG → ABCDEG
 
 Order (ProductNo, ProductName, CustomerNo, CustomerName, OrderDate, UnitPrice, Quantity, SubTotal, Tax, Total)
 
- * ProductNo → Tax, ProductName, UnitPrice
+ * ProductNo → ProductName, UnitPrice
+ * ProductName → Tax
  * CustomerNo → CustomerName
  * ProductNo, CustomerNo, OrderDate → Quantity
  * UnitPrice, Quantity → SubTotal
