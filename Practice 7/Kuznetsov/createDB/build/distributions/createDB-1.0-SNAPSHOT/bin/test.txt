@@ -1,0 +1,136 @@
+drop table Results;
+drop table Players;
+drop table Events;
+drop table Olympics;
+drop table Countries;
+
+create table Countries (
+    name char(40),
+    country_id char(3) unique,
+    area_sqkm integer,
+    population integer
+);
+
+create table Olympics (
+    olympic_id char(7) unique,
+    country_id char(3),
+    city char(50),
+    year integer,
+    startdate date,
+    enddate date,
+    foreign key (country_id) references Countries(country_id)
+);
+
+create table Players (
+    name char(40),
+    player_id char(10) unique,
+    country_id char(3),
+    birthdate date,
+    foreign key (country_id) references Countries(country_id)
+);
+
+create table Events (
+    event_id char(7) unique,
+    name char(40),
+    eventtype char(20),
+    olympic_id char(7),
+    is_team_event integer check (is_team_event in (0, 1)),
+    num_players_in_team integer,
+    result_noted_in char(100),
+    foreign key (olympic_id) references Olympics(olympic_id)
+);
+
+create table Results (
+    event_id char(7),
+    player_id char(10),
+    medal char(7),
+    result float,
+    foreign key (event_id) references Events(event_id),
+    foreign key (player_id) references players(player_id)
+);
+
+insert into Countries values('Korea (Democratic People's Republic of)', '1', 75263, 8469);
+insert into Countries values('Luxembourg', '2', 833131, 754429);
+insert into Countries values('Romania', '3', 8743331, 57502);
+insert into Countries values('Sri Lanka', '4', 20948, 3447);
+insert into Countries values('Switzerland', '5', 494, 58288);
+
+insert into Olympics values('1', '5', 'Baku', 1992, to_date('15-05-1992', 'dd-mm-yyyy'), to_date('29-05-1992', 'dd-mm-yyyy'));
+insert into Olympics values('2', '4', 'Lusaka', 2004, to_date('31-08-2004', 'dd-mm-yyyy'), to_date('05-09-2004', 'dd-mm-yyyy'));
+insert into Olympics values('3', '2', 'Jamestown', 1984, to_date('02-09-1984', 'dd-mm-yyyy'), to_date('09-09-1984', 'dd-mm-yyyy'));
+insert into Olympics values('4', '5', 'Tunis', 1992, to_date('17-12-1992', 'dd-mm-yyyy'), to_date('27-12-1992', 'dd-mm-yyyy'));
+insert into Olympics values('5', '2', 'San Salvador', 2004, to_date('16-08-2004', 'dd-mm-yyyy'), to_date('09-09-2004', 'dd-mm-yyyy'));
+
+insert into Players values('Earline Corwin', '1', '1', to_date('05-08-1982', 'dd-mm-yyyy'));
+insert into Players values('Victor Ward', '2', '4', to_date('19-05-2002', 'dd-mm-yyyy'));
+insert into Players values('Hosea Hartmann', '3', '3', to_date('10-07-1986', 'dd-mm-yyyy'));
+insert into Players values('Dessie Mann', '4', '3', to_date('21-07-1960', 'dd-mm-yyyy'));
+insert into Players values('Lonna Durgan', '5', '5', to_date('01-05-1960', 'dd-mm-yyyy'));
+
+insert into Events values('1', 'MLG Meadowlands', 'GFinity', '5', 0, -1, 'points');
+insert into Results values('1', '5', 'GOLD', 5);
+insert into Results values('1', '3', 'SILVER', 7);
+insert into Results values('1', '2', 'BRONZE', 4);
+
+insert into Events values('2', 'ESL Cologne', 'IEM', '4', 1, 3, 'points');
+insert into Results values('2', '1', 'GOLD', 3);
+insert into Results values('2', '2', 'GOLD', 3);
+insert into Results values('2', '2', 'GOLD', 3);
+insert into Results values('2', '2', 'SILVER', 3);
+insert into Results values('2', '4', 'SILVER', 3);
+insert into Results values('2', '3', 'SILVER', 3);
+insert into Results values('2', '1', 'BRONZE', 6);
+insert into Results values('2', '1', 'BRONZE', 6);
+insert into Results values('2', '3', 'BRONZE', 6);
+
+insert into Events values('3', 'ESL Cologne', 'ESL', '2', 1, 10, 'points');
+insert into Results values('3', '3', 'GOLD', 3);
+insert into Results values('3', '4', 'GOLD', 3);
+insert into Results values('3', '4', 'GOLD', 3);
+insert into Results values('3', '3', 'GOLD', 3);
+insert into Results values('3', '2', 'GOLD', 3);
+insert into Results values('3', '1', 'GOLD', 3);
+insert into Results values('3', '2', 'GOLD', 3);
+insert into Results values('3', '5', 'GOLD', 3);
+insert into Results values('3', '1', 'GOLD', 3);
+insert into Results values('3', '3', 'GOLD', 3);
+insert into Results values('3', '2', 'SILVER', 3);
+insert into Results values('3', '2', 'SILVER', 3);
+insert into Results values('3', '5', 'SILVER', 3);
+insert into Results values('3', '2', 'SILVER', 3);
+insert into Results values('3', '4', 'SILVER', 3);
+insert into Results values('3', '3', 'SILVER', 3);
+insert into Results values('3', '5', 'SILVER', 3);
+insert into Results values('3', '3', 'SILVER', 3);
+insert into Results values('3', '5', 'SILVER', 3);
+insert into Results values('3', '5', 'SILVER', 3);
+insert into Results values('3', '4', 'BRONZE', 2);
+insert into Results values('3', '4', 'BRONZE', 2);
+insert into Results values('3', '4', 'BRONZE', 2);
+insert into Results values('3', '2', 'BRONZE', 2);
+insert into Results values('3', '3', 'BRONZE', 2);
+insert into Results values('3', '5', 'BRONZE', 2);
+insert into Results values('3', '5', 'BRONZE', 2);
+insert into Results values('3', '4', 'BRONZE', 2);
+insert into Results values('3', '3', 'BRONZE', 2);
+insert into Results values('3', '4', 'BRONZE', 2);
+
+insert into Events values('4', 'International', 'IEM', '4', 0, -1, 'seconds');
+insert into Results values('4', '2', 'GOLD', 8);
+insert into Results values('4', '5', 'SILVER', 1);
+insert into Results values('4', '4', 'BRONZE', 6);
+
+insert into Events values('5', 'GFinity London', 'IEM', '1', 1, 4, 'seconds');
+insert into Results values('5', '1', 'GOLD', 7);
+insert into Results values('5', '2', 'GOLD', 7);
+insert into Results values('5', '2', 'GOLD', 7);
+insert into Results values('5', '4', 'GOLD', 7);
+insert into Results values('5', '3', 'SILVER', 9);
+insert into Results values('5', '4', 'SILVER', 9);
+insert into Results values('5', '4', 'SILVER', 9);
+insert into Results values('5', '4', 'SILVER', 9);
+insert into Results values('5', '5', 'BRONZE', 1);
+insert into Results values('5', '3', 'BRONZE', 1);
+insert into Results values('5', '5', 'BRONZE', 1);
+insert into Results values('5', '3', 'BRONZE', 1);
+
