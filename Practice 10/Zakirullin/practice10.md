@@ -12,12 +12,14 @@ Order (ProductNo, ProductName, CustomerNo, CustomerName, OrderDate, UnitPrice, Q
  * ProductNo, CustomerNo, OrderDate → Quantity
  * UnitPrice, Quantity → SubTotal
  * SubTotal, Tax → Total
+ * ProductName → ProductNo (при условии уникальности имён продуктов)
+ * CustomerName → CustomerNo (при условии уникальности имён клиентов)
 
 Ключи-кандидаты:
  * ProductNo, CustomerNo, OrderDate
  * ProductName, CustomerNo, OrderDate (при условии уникальности имён продуктов)
  * ProductNo, CustomerName, OrderDate (при условии уникальности имён клиентов)
- * ProductName, CustomerName, OrderDate (при условии уникальности имён продуктов клиентов)
+ * ProductName, CustomerName, OrderDate (при условии уникальности имён продуктов и клиентов)
 
 ## Task 3
 
