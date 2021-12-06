@@ -54,16 +54,25 @@ ProductNo -&gt; UnitPrice
 
 CustomerNo -&gt; CustomerName
 
-{ProductNo, OrderDate, CustomerNo} -&gt; {ProductName, CustomerName,
-Quantity, UnitPrice, SubTotal, Total}
+{ProductNo, OrderDate, CustomerNo} -&gt; {Quantity}
 
 {UnitPrice, Quantity} -&gt; SubTotal
 
 {SubTotal, Tax} -&gt; Total
 
+ProductName -&gt; ProductNo
+
+CustomerName -&gt; CustomerNo
+
 -   Б) Каковы ключи-кандидаты?
 
-> {ProductNo, OrderDate, CustomerNo}
+> {ProductNo, OrderDate, CustomerNo},
+>
+> {ProductName, OrderDate, CustomerNo},
+>
+> {ProductNo, OrderDate, CustomerName},
+>
+> {ProductName, OrderDate, CustomerName}
 
 **Задача 3**
 
